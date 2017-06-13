@@ -1,6 +1,5 @@
 package com.tomato.util;
 
-import com.sun.xml.internal.ws.util.UtilException;
 import com.tomato.util.checkdigits.CheckDigit;
 import com.tomato.util.checkdigits.CheckISO7064Mod11_2;
 
@@ -37,10 +36,10 @@ public final class PINUtil {
 		if (null != digits) {
 			int len = digits.length();
 			if (len > MAX_PRCPIN_G2) {
-				throw new UtilException("第二代公民身份号码标准长度是18位！");
+				throw new RuntimeException("第二代公民身份号码标准长度是18位！");
 			} else if (len > 0 && len != MAX_PRCPIN_G2) {
 				if (len != MAX_PRCPIN_G1) {
-					throw new UtilException("第一代公民身份号码标准长度是15位！");
+					throw new RuntimeException("第一代公民身份号码标准长度是15位！");
 				}
 				StringBuilder sb = new StringBuilder(MAX_PRCPIN_G2);
 				sb.append(digits.substring(0, MAX_PRCPIN_G1_YEAR2_OFFSET));

@@ -5,7 +5,6 @@ import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import com.sun.xml.internal.ws.util.UtilException;
 
 
 public final class MD5Util {
@@ -26,7 +25,7 @@ public final class MD5Util {
 			try {
 				return MessageDigest.getInstance(ALGORITHM_MD5);
 			} catch (NoSuchAlgorithmException e) {
-				throw new UtilException(e);
+				throw new RuntimeException(e);
 			}
 		}
 
@@ -94,7 +93,7 @@ public final class MD5Util {
 		try {
 			return digest(input.getBytes(charsetName));
 		} catch (UnsupportedEncodingException e) {
-			throw new UtilException(e);
+			throw new RuntimeException(e);
 		}
 	}
 
