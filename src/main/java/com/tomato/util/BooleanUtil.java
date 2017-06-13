@@ -26,8 +26,8 @@ public final class BooleanUtil {
 	 * @param defaultValue
 	 *            the default value.
 	 * @return the <code>Boolean</code> value of the system property.
-	 * @see java.lang.System#getProperty(java.lang.String)
-	 * @see java.lang.System#getProperty(java.lang.String, java.lang.String)
+	 * @see System#getProperty(String)
+	 * @see System#getProperty(String, String)
 	 */
 	public static Boolean getBoolean(String name, Boolean defaultValue) {
 		Boolean result;
@@ -49,14 +49,14 @@ public final class BooleanUtil {
 	 * <p>
 	 * If there is no property with the specified name, or if the specified name is empty or null,
 	 * then <code>defaultValue</code> is returned.
-	 * 
+	 *
 	 * @param name
 	 *            the system property name.
 	 * @param defaultValue
 	 *            the default value.
 	 * @return the <code>boolean</code> value of the system property.
-	 * @see java.lang.System#getProperty(java.lang.String)
-	 * @see java.lang.System#getProperty(java.lang.String, java.lang.String)
+	 * @see System#getProperty(String)
+	 * @see System#getProperty(String, String)
 	 */
 	public static boolean getBoolean(String name, boolean defaultValue) {
 		boolean result;
@@ -78,12 +78,12 @@ public final class BooleanUtil {
 	 * <p>
 	 * If there is no property with the specified name, or if the specified name is empty or null,
 	 * then <code>false</code> is returned.
-	 * 
+	 *
 	 * @param name
 	 *            the system property name.
 	 * @return the <code>boolean</code> value of the system property.
-	 * @see java.lang.System#getProperty(java.lang.String)
-	 * @see java.lang.System#getProperty(java.lang.String, java.lang.String)
+	 * @see System#getProperty(String)
+	 * @see System#getProperty(String, String)
 	 */
 	public static boolean getBoolean(String name) {
 		return getBoolean(name, false);
