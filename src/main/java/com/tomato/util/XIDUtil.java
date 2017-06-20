@@ -1,5 +1,7 @@
 package com.tomato.util;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,14 +16,46 @@ public class XIDUtil {
 
 	private static final Pattern PATTERN_MOBILE_VALID = Pattern.compile("^1[34578]\\d{9}$");
 	private static final Pattern PATTERN_MOBILE_GROUP = Pattern.compile("(^|\\D+)(1[34578]\\d[ ]?\\d{4}[ ]?\\d{4})(\\D+|$)");
-	public static final int MAX_NSRSBH_15 = 15;
-	public static final int MAX_NSRSBH_18 = 18;
-	public static final HashMap<Character, Integer> NSRSBH_CODE_15;
-	public static final HashMap<Character, Integer> NSRSBH_CODE_18;
-	public static final int[] W_15 = { 3, 7, 9, 10, 5, 8, 4, 2 };
+	private static final int MAX_NSRSBH_15 = 15;
+	private static final int MAX_NSRSBH_18 = 18;
+	private static final HashMap<Character, Integer> NSRSBH_CODE_15 = new HashMap<>();
+	private static final HashMap<Character, Integer> NSRSBH_CODE_18 = new HashMap<>();
+	private static final int[] W_15 = { 3, 7, 9, 10, 5, 8, 4, 2 };
+	private static final String ICU_CLASS_NAME = "com.ibm.icu.text.Transliterator";
+	private static final String ICU_PYJC_ID = "Han-Latin;NFD;[:Nonspacing Mark:] Remove;[:Punctuation:] Remove; Upper();";
+	private static Object ICU_TRANSLITERATOR;
+	private static Method ICU_TRANSLATE_METHOD;
 
 	static {
-		NSRSBH_CODE_15 = new HashMap<>();
+		initICU();
+		initNsrsbhCode();
+	}
+
+	private static void initICU() {
+		Class<?> clazz = null;
+		try {
+			clazz = Class.forName(ICU_CLASS_NAME);
+		} catch (ClassNotFoundException e) {
+		}
+		if (clazz == null) {
+			return;
+		}
+		Method getInstance = null;
+		try {
+			getInstance = clazz.getMethod("getInstance", String.class);
+			ICU_TRANSLATE_METHOD = clazz.getMethod("transliterate", String.class);
+		} catch (NoSuchMethodException | SecurityException e) {
+		}
+		if (ICU_TRANSLATE_METHOD == null) {
+			return;
+		}
+		try {
+			ICU_TRANSLITERATOR = getInstance.invoke(null, ICU_PYJC_ID);
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+		}
+	}
+
+	private static void initNsrsbhCode() {
 		NSRSBH_CODE_15.put('0', 0);
 		NSRSBH_CODE_15.put('1', 1);
 		NSRSBH_CODE_15.put('2', 2);
@@ -59,7 +93,6 @@ public class XIDUtil {
 		NSRSBH_CODE_15.put('Y', 34);
 		NSRSBH_CODE_15.put('Z', 35);
 
-		NSRSBH_CODE_18 = new HashMap<>();
 		NSRSBH_CODE_18.put('0', 0);
 		NSRSBH_CODE_18.put('1', 1);
 		NSRSBH_CODE_18.put('2', 2);
@@ -316,6 +349,46 @@ public class XIDUtil {
 			nsrmc = HanziUtil.cleanCode(nsrmc);
 		}
 		return nsrmc;
+	}
+
+	/**
+	 * 获取纳税人名称的拼音简称
+	 * 
+	 * @return
+	 */
+	public static String getNsrmcPyjc(String nsrmc) {
+		if (nsrmc == null) {
+			return null;
+		}
+		char[] charArray = nsrmc.toCharArray();
+		StringBuilder sb = new StringBuilder(nsrmc.length());
+		// 根据《企业名称登记管理实施办法》第八条 企业名称应当使用符合国家规范的汉字，不得使用汉语拼音字母、阿拉伯数字。
+		for (char c : charArray) {
+			if (c > 127) {
+				sb.append(c);
+			}
+		}
+		if (sb.length() == 0) {
+			return nsrmc.toUpperCase();
+		}
+		nsrmc = sb.toString();
+		if (ICU_TRANSLITERATOR == null || ICU_TRANSLATE_METHOD == null) {
+			throw new RuntimeException("未加载ICU相关jar包，是否导入了icu4j包？");
+		}
+		String py;
+		try {
+			py = (String) ICU_TRANSLATE_METHOD.invoke(ICU_TRANSLITERATOR, nsrmc);
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			throw new RuntimeException("纳税人名称转换拼音异常: " + nsrmc, e);
+		}
+		String[] arr = py.split(" ");
+		sb.setLength(0);
+		for (String s : arr) {
+			if (s.length() > 0) {
+				sb.append(s.charAt(0));
+			}
+		}
+		return sb.toString();
 	}
 
 	/**
