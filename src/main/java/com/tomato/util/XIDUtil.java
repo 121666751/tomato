@@ -16,12 +16,17 @@ public class XIDUtil {
 	private static final Pattern PATTERN_MOBILE_GROUP = Pattern.compile("(^|\\D+)(1[34578]\\d[ ]?\\d{4}[ ]?\\d{4})(\\D+|$)");
 	public static final int MAX_NSRSBH_15 = 15;
 	public static final int MAX_NSRSBH_18 = 18;
-	public static final HashMap<Character, Integer> NSRSBH_CODE_15;
-	public static final HashMap<Character, Integer> NSRSBH_CODE_18;
-	public static final int[] W_15 = { 3, 7, 9, 10, 5, 8, 4, 2 };
+	private static final HashMap<Character, Integer> NSRSBH_CODE_15 = new HashMap<>(64);
+	private static final HashMap<Character, Integer> NSRSBH_CODE_18 = new HashMap<>(64);
+	private static final int[] POW_3_ARR = { 1, 3, 9, 27, 81, 243, 729, 2187, 6561, 19683, 59049, 177147, 531441, 1594323, 4782969, 14348907, 43046721 };
+	private static final int[] W_15 = { 0, 0, 0, 0, 0, 0, 3, 7, 9, 10, 5, 8, 4, 2 };
+
 
 	static {
-		NSRSBH_CODE_15 = new HashMap<>();
+		initNsrsbhCode();
+	}
+
+	private static void initNsrsbhCode() {
 		NSRSBH_CODE_15.put('0', 0);
 		NSRSBH_CODE_15.put('1', 1);
 		NSRSBH_CODE_15.put('2', 2);
@@ -59,7 +64,6 @@ public class XIDUtil {
 		NSRSBH_CODE_15.put('Y', 34);
 		NSRSBH_CODE_15.put('Z', 35);
 
-		NSRSBH_CODE_18 = new HashMap<>();
 		NSRSBH_CODE_18.put('0', 0);
 		NSRSBH_CODE_18.put('1', 1);
 		NSRSBH_CODE_18.put('2', 2);
@@ -344,60 +348,36 @@ public class XIDUtil {
 		return false;
 	}
 
-	/**
-	 * @param nsrsbh
-	 * @return
-	 */
 	private static boolean isNsrsbh15(String nsrsbh) {
-		if (nsrsbh.length() != MAX_NSRSBH_15) {
-			return false;
-		}
 		int mod = 0;
-		char last = nsrsbh.charAt(nsrsbh.length() - 1);
-		nsrsbh = nsrsbh.substring(6, nsrsbh.length() - 1);
-		char[] charArray = nsrsbh.toCharArray();
-		Integer lastCode15 = NSRSBH_CODE_15.get(last);
-		if (lastCode15 == null) {
+		Integer c15, c;
+		char[] charArr = nsrsbh.toCharArray();
+		if ((c15 = NSRSBH_CODE_15.get(charArr[14])) == null) {
 			return false;
-		} else if (lastCode15 == 33) {// 为X时
-			lastCode15 = 10;
-		} else if (lastCode15 == 0) {
-			lastCode15 = 11;
 		}
-		for (int i = 0; i < charArray.length; i++) {
-			Integer c = NSRSBH_CODE_15.get(charArray[i]);
-			if (c == null) {
+		for (int i = 6; i < 14; i++) {
+			if ((c = NSRSBH_CODE_15.get(charArr[i])) == null) {
 				return false;
 			}
 			mod += (W_15[i] * c);
 		}
-		return lastCode15 == 11 - mod % 11;
+		return (mod = mod % 11) == 1 ? (c15 == 33) : (mod == 0 ? c15 == 0 : (c15 == 11 - mod));
 	}
 
-	/**
-	 * @param nsrsbh
-	 * @return
-	 */
 	private static boolean isNsrsbh18(String nsrsbh) {
-		if (nsrsbh.length() != MAX_NSRSBH_18) {
-			return false;
-		}
 		int mod = 0;
-		char last = nsrsbh.charAt(nsrsbh.length() - 1);
-		nsrsbh = nsrsbh.substring(0, nsrsbh.length() - 1);
-		char[] charArray = nsrsbh.toCharArray();
-		Integer lastCode18 = NSRSBH_CODE_18.get(last);
-		if (lastCode18 == null) {
+		Integer c18, c;
+		char[] arr = nsrsbh.toCharArray();
+		if ((c18 = NSRSBH_CODE_18.get(arr[17])) == null) {
 			return false;
 		}
-		for (int i = 0; i < charArray.length; i++) {
-			Integer c = NSRSBH_CODE_18.get(charArray[i]);
-			if (c == null) {
+		for (int i = 0; i < 17; i++) {
+			if ((c = NSRSBH_CODE_18.get(arr[i])) == null) {
 				return false;
 			}
-			mod += (Math.pow(3, i) % 31 * c);
+			mod += (POW_3_ARR[i] % 31 * c);
 		}
-		return lastCode18 == 31 - mod % 31;
+		return (mod = mod % 31) == 0 ? (c18 == 0) : (c18 == (31 - mod));
 	}
 
 }
