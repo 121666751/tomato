@@ -176,7 +176,7 @@ public class XIDUtil {
 
 	/**
 	 * 清洗手机号码
-	 * 
+	 *
 	 * @param mobile
 	 *            手机号码
 	 * @return
@@ -200,7 +200,7 @@ public class XIDUtil {
 
 	/**
 	 * 手机号码经清洗后产生UUID并Base58编码
-	 * 
+	 *
 	 * @param mobile
 	 *            手机号码
 	 * @return
@@ -214,7 +214,7 @@ public class XIDUtil {
 
 	/**
 	 * 清洗电子邮件地址
-	 * 
+	 *
 	 * @param email
 	 *            电子邮件地址
 	 * @return
@@ -228,7 +228,7 @@ public class XIDUtil {
 
 	/**
 	 * 电子邮件地址经清洗后产生UUID并Base58编码
-	 * 
+	 *
 	 * @param email
 	 *            电子邮件地址
 	 * @return
@@ -242,7 +242,7 @@ public class XIDUtil {
 
 	/**
 	 * 清洗及升级公民身份号码（居民身份证号码）
-	 * 
+	 *
 	 * @param pin
 	 *            公民身份号码（居民身份证号码）
 	 * @return
@@ -257,7 +257,7 @@ public class XIDUtil {
 
 	/**
 	 * 公民身份号码（居民身份证号码）经清洗及升级后产生UUID并Base58编码
-	 * 
+	 *
 	 * @param pin
 	 *            公民身份号码（居民身份证号码）
 	 * @return
@@ -271,7 +271,7 @@ public class XIDUtil {
 
 	/**
 	 * 清洗纳税人识别号
-	 * 
+	 *
 	 * @param nsrsbh
 	 *            纳税人识别号
 	 * @return
@@ -285,7 +285,7 @@ public class XIDUtil {
 
 	/**
 	 * 纳税人识别号和行政区划数字代码经清洗后产生UUID并Base58编码
-	 * 
+	 *
 	 * @param xzqhszDm
 	 *            行政区划数字代码
 	 * @param nsrsbh
@@ -310,7 +310,7 @@ public class XIDUtil {
 
 	/**
 	 * 清洗纳税人名称
-	 * 
+	 *
 	 * @param nsrmc
 	 *            纳税人名称
 	 * @return
