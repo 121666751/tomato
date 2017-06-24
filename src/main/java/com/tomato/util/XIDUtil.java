@@ -5,16 +5,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @since 2017年6月13日 下午6:06:44
- * @version $Id$
- * @author CaiBo
+ * The type Xid util.
  *
+ * @author CaiBo
+ * @version $Id$
+ * @since 2017年6月13日 下午6:06:44
  */
 public class XIDUtil {
 
 	private static final Pattern PATTERN_MOBILE_VALID = Pattern.compile("^1[34578]\\d{9}$");
 	private static final Pattern PATTERN_MOBILE_GROUP = Pattern.compile("(^|\\D+)(1[34578]\\d[ ]?\\d{4}[ ]?\\d{4})(\\D+|$)");
+	/**
+	 * The constant MAX_NSRSBH_15.
+	 */
 	public static final int MAX_NSRSBH_15 = 15;
+	/**
+	 * The constant MAX_NSRSBH_18.
+	 */
 	public static final int MAX_NSRSBH_18 = 18;
 	private static final HashMap<Character, Integer> NSRSBH_CODE_15 = new HashMap<>(64);
 	private static final HashMap<Character, Integer> NSRSBH_CODE_18 = new HashMap<>(64);
@@ -114,21 +121,27 @@ public class XIDUtil {
 	}
 
 	/**
-	 * @param userId
-	 * @param platformId
-	 * @param providerId
-	 * @return
+	 * Gets union id.
+	 *
+	 * @param userId the user id
+	 * @param platformId the platform id
+	 * @param providerId the provider id
+	 *
+	 * @return union id
 	 */
 	public static String getUnionId(long userId, String platformId, String providerId) {
 		return IDUtil.getBase58ID(KEY_UNION_ID, userId, platformId, providerId);
 	}
 
 	/**
-	 * @param userId
-	 * @param platformId
-	 * @param providerId
-	 * @param appId
-	 * @return
+	 * Gets open id.
+	 *
+	 * @param userId the user id
+	 * @param platformId the platform id
+	 * @param providerId the provider id
+	 * @param appId the app id
+	 *
+	 * @return open id
 	 */
 	public static String getOpenId(long userId, String platformId, String providerId, String appId) {
 		String unionId = getUnionId(userId, platformId, providerId);
@@ -136,36 +149,48 @@ public class XIDUtil {
 	}
 
 	/**
-	 * @param userId
-	 * @param unionId
-	 * @param appId
-	 * @return
+	 * Gets open id.
+	 *
+	 * @param userId the user id
+	 * @param unionId the union id
+	 * @param appId the app id
+	 *
+	 * @return open id
 	 */
 	public static String getOpenId(long userId, String unionId, String appId) {
 		return IDUtil.getBase58ID(KEY_OPEN_ID, userId, unionId, appId);
 	}
 
 	/**
-	 * @param vendorName
-	 * @param platformName
-	 * @return
+	 * Gets platform id.
+	 *
+	 * @param vendorName the vendor name
+	 * @param platformName the platform name
+	 *
+	 * @return platform id
 	 */
 	public static String getPlatformId(String vendorName, String platformName) {
 		return IDUtil.getBase58ID(KEY_PLATFORM_ID, vendorName, platformName);
 	}
 
 	/**
-	 * @param vendorName
-	 * @param providerName
-	 * @return
+	 * Gets provider id.
+	 *
+	 * @param vendorName the vendor name
+	 * @param providerName the provider name
+	 *
+	 * @return provider id
 	 */
 	public static String getProviderId(String vendorName, String providerName) {
 		return IDUtil.getBase58ID(KEY_PROVIDER_ID, vendorName, providerName);
 	}
 
 	/**
-	 * @param mobile
-	 * @return
+	 * Is mobile boolean.
+	 *
+	 * @param mobile the mobile
+	 *
+	 * @return boolean
 	 */
 	public static boolean isMobile(String mobile) {
 		if (null != mobile && mobile.length() >= 11) {
@@ -177,9 +202,9 @@ public class XIDUtil {
 	/**
 	 * 清洗手机号码
 	 *
-	 * @param mobile
-	 *            手机号码
-	 * @return
+	 * @param mobile 手机号码
+	 *
+	 * @return mobile
 	 */
 	public static String getMobile(String mobile) {
 		if (null != mobile) {
@@ -201,9 +226,9 @@ public class XIDUtil {
 	/**
 	 * 手机号码经清洗后产生UUID并Base58编码
 	 *
-	 * @param mobile
-	 *            手机号码
-	 * @return
+	 * @param mobile 手机号码
+	 *
+	 * @return mobile id
 	 */
 	public static String getMobileId(String mobile) {
 		if (null != mobile) {
@@ -215,9 +240,9 @@ public class XIDUtil {
 	/**
 	 * 清洗电子邮件地址
 	 *
-	 * @param email
-	 *            电子邮件地址
-	 * @return
+	 * @param email 电子邮件地址
+	 *
+	 * @return email
 	 */
 	public static String getEmail(String email) {
 		if (null != email) {
@@ -229,9 +254,9 @@ public class XIDUtil {
 	/**
 	 * 电子邮件地址经清洗后产生UUID并Base58编码
 	 *
-	 * @param email
-	 *            电子邮件地址
-	 * @return
+	 * @param email 电子邮件地址
+	 *
+	 * @return email id
 	 */
 	public static String getEmailId(String email) {
 		if (null != email) {
@@ -243,9 +268,9 @@ public class XIDUtil {
 	/**
 	 * 清洗及升级公民身份号码（居民身份证号码）
 	 *
-	 * @param pin
-	 *            公民身份号码（居民身份证号码）
-	 * @return
+	 * @param pin 公民身份号码（居民身份证号码）
+	 *
+	 * @return pin
 	 */
 	public static String getPin(String pin) {
 		if (null != pin) {
@@ -258,9 +283,9 @@ public class XIDUtil {
 	/**
 	 * 公民身份号码（居民身份证号码）经清洗及升级后产生UUID并Base58编码
 	 *
-	 * @param pin
-	 *            公民身份号码（居民身份证号码）
-	 * @return
+	 * @param pin 公民身份号码（居民身份证号码）
+	 *
+	 * @return pin id
 	 */
 	public static String getPinId(String pin) {
 		if (null != pin) {
@@ -272,9 +297,9 @@ public class XIDUtil {
 	/**
 	 * 清洗纳税人识别号
 	 *
-	 * @param nsrsbh
-	 *            纳税人识别号
-	 * @return
+	 * @param nsrsbh 纳税人识别号
+	 *
+	 * @return nsrsbh
 	 */
 	public static String getNsrsbh(String nsrsbh) {
 		if (null != nsrsbh) {
@@ -286,11 +311,10 @@ public class XIDUtil {
 	/**
 	 * 纳税人识别号和行政区划数字代码经清洗后产生UUID并Base58编码
 	 *
-	 * @param xzqhszDm
-	 *            行政区划数字代码
-	 * @param nsrsbh
-	 *            纳税人识别号
-	 * @return
+	 * @param xzqhszDm 行政区划数字代码
+	 * @param nsrsbh 纳税人识别号
+	 *
+	 * @return nsrsbh id
 	 */
 	public static String getNsrsbhId(String xzqhszDm, String nsrsbh) {
 		if (null == xzqhszDm) {
@@ -311,9 +335,9 @@ public class XIDUtil {
 	/**
 	 * 清洗纳税人名称
 	 *
-	 * @param nsrmc
-	 *            纳税人名称
-	 * @return
+	 * @param nsrmc 纳税人名称
+	 *
+	 * @return nsrmc
 	 */
 	public static String getNsrmc(String nsrmc) {
 		if (null != nsrmc) {
@@ -324,10 +348,10 @@ public class XIDUtil {
 
 	/**
 	 * 纳税人名称经清洗后产生UUID并Base58编码
-	 * 
-	 * @param nsrmc
-	 *            纳税人名称
-	 * @return
+	 *
+	 * @param nsrmc 纳税人名称
+	 *
+	 * @return nsrmc id
 	 */
 	public static String getNsrmcId(String nsrmc) {
 		if (null != nsrmc) {
@@ -336,6 +360,13 @@ public class XIDUtil {
 		return nsrmc;
 	}
 
+	/**
+	 * Is nsrsbh boolean.
+	 *
+	 * @param nsrsbh the nsrsbh
+	 *
+	 * @return the boolean
+	 */
 	public static boolean isNsrsbh(String nsrsbh) {
 		if (nsrsbh == null || !nsrsbh.equals(getNsrsbh(nsrsbh))) {
 			return false;

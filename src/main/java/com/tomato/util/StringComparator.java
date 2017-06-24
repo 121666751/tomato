@@ -11,11 +11,10 @@ import java.util.HashMap;
 
 /**
  * 按数字优先排序。若要倒序，则使用 Collections.reverseOrder(Comparator<T> cmp) 强行反转指定比较器的顺序
- * 
- * @since 2011-1-11 下午09:39:24
- * @version $Id: com.tomato.util.StringComparator.java 15463 2016-05-28 07:44:34Z WuJianqiang $
+ *
  * @author WuJianqiang
- * 
+ * @version $Id : com.tomato.util.StringComparator.java 15463 2016-05-28 07:44:34Z WuJianqiang $
+ * @since 2011 -1-11 下午09:39:24
  */
 public class StringComparator implements Comparator<Object> {
 	private static final int LESS = -1;
@@ -33,14 +32,14 @@ public class StringComparator implements Comparator<Object> {
 
 	/**
 	 * 默认使用中文语言环境
-	 * 
-	 * @param newStrength
-	 *            the new strength value.
-	 * @see Collator#getStrength
-	 * @see Collator#PRIMARY
-	 * @see Collator#SECONDARY
-	 * @see Collator#TERTIARY
-	 * @see Collator#IDENTICAL
+	 *
+	 * @param newStrength the new strength value.
+	 *
+	 * @see Collator#getStrength Collator#getStrength
+	 * @see Collator#PRIMARY Collator#PRIMARY
+	 * @see Collator#SECONDARY Collator#SECONDARY
+	 * @see Collator#TERTIARY Collator#TERTIARY
+	 * @see Collator#IDENTICAL Collator#IDENTICAL
 	 */
 	public StringComparator(int newStrength) {
 		collator = Collator.getInstance(java.util.Locale.CHINA);
@@ -49,15 +48,16 @@ public class StringComparator implements Comparator<Object> {
 	}
 
 	/**
-	 * 
+	 * Clear.
 	 */
 	public void clear() {
 		numberCollationCache.clear();
 	}
 
 	/**
-	 * 
-	 * @param newStrength
+	 * Sets strength.
+	 *
+	 * @param newStrength the new strength
 	 */
 	public void setStrength(int newStrength) {
 		collator.setStrength(newStrength);
@@ -70,15 +70,25 @@ public class StringComparator implements Comparator<Object> {
 	 * 
 	 */
 	private class NumberCollationKey {
+		/**
+		 * The Pre.
+		 */
 		final Number pre;
+		/**
+		 * The All.
+		 */
 		final String all;
+		/**
+		 * The Sub.
+		 */
 		final String sub;
 		private CollationKey allKey;
 		private CollationKey subKey;
 
 		/**
-		 * 
-		 * @param source
+		 * Instantiates a new Number collation key.
+		 *
+		 * @param source the source
 		 */
 		public NumberCollationKey(Object source) {
 			all = StringUtil.valueOf(source, null);
@@ -107,8 +117,9 @@ public class StringComparator implements Comparator<Object> {
 		}
 
 		/**
-		 * 
-		 * @return
+		 * Gets all key.
+		 *
+		 * @return all key
 		 */
 		public CollationKey getAllKey() {
 			if (null == allKey && null != all) {
@@ -118,8 +129,9 @@ public class StringComparator implements Comparator<Object> {
 		}
 
 		/**
-		 * 
-		 * @return
+		 * Gets sub key.
+		 *
+		 * @return sub key
 		 */
 		public CollationKey getSubKey() {
 			if (null == subKey && null != sub) {
@@ -130,9 +142,11 @@ public class StringComparator implements Comparator<Object> {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @return
+	 * Gets number collation key.
+	 *
+	 * @param source the source
+	 *
+	 * @return number collation key
 	 */
 	public NumberCollationKey getNumberCollationKey(Object source) {
 		NumberCollationKey nck = numberCollationCache.get(source);

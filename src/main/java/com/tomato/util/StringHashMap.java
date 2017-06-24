@@ -3,11 +3,13 @@ package com.tomato.util;
 import java.util.HashMap;
 
 /**
- * @since 2010-4-21 上午11:11:13
- * @version $Id: com.tomato.util.StringHashMap.java 16594 2016-06-18 12:49:04Z WuJianqiang $
+ * The type String hash map.
+ *
+ * @param <V> the type parameter
+ *
  * @author WuJianqiang
- * 
- * @param <V>
+ * @version $Id : com.tomato.util.StringHashMap.java 16594 2016-06-18 12:49:04Z WuJianqiang $
+ * @since 2010 -4-21 上午11:11:13
  */
 public class StringHashMap<V> extends HashMap<String, V> implements StringMap<V> {
 	private static final long serialVersionUID = 1L;
@@ -16,15 +18,16 @@ public class StringHashMap<V> extends HashMap<String, V> implements StringMap<V>
 	private boolean caseInsensitive = true;
 
 	/**
-	 * 
+	 * Instantiates a new String hash map.
 	 */
 	public StringHashMap() {
 		super();
 	}
 
 	/**
-	 * 
-	 * @param initialCapacity
+	 * Instantiates a new String hash map.
+	 *
+	 * @param initialCapacity the initial capacity
 	 */
 	public StringHashMap(int initialCapacity) {
 		super(initialCapacity);

@@ -2,6 +2,11 @@ package com.tomato.util;
 
 import java.util.LinkedHashMap;
 
+/**
+ * The type String linked hash map.
+ *
+ * @param <V> the type parameter
+ */
 public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements StringMap<V> {
 	private static final long serialVersionUID = 1L;
 
@@ -9,15 +14,16 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	private boolean caseInsensitive = true;
 
 	/**
-	 * 
+	 * Instantiates a new String linked hash map.
 	 */
 	public StringLinkedHashMap() {
 		super();
 	}
 
 	/**
-	 * 
-	 * @param initialCapacity
+	 * Instantiates a new String linked hash map.
+	 *
+	 * @param initialCapacity the initial capacity
 	 */
 	public StringLinkedHashMap(int initialCapacity) {
 		super(initialCapacity);

@@ -18,14 +18,41 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
+/**
+ * The type String util.
+ */
 public final class StringUtil {
+	/**
+	 * The constant EMPTY.
+	 */
 	public static final String EMPTY = "";
+	/**
+	 * The constant SPACE.
+	 */
 	public static final String SPACE = " ";
+	/**
+	 * The constant NULL.
+	 */
 	public static final String NULL = "null";
+	/**
+	 * The constant ARRAY_SEPARATOR.
+	 */
 	public static final String ARRAY_SEPARATOR = ",";
+	/**
+	 * The constant SINGLE_QUOTE.
+	 */
 	public static final char SINGLE_QUOTE = '\'';
+	/**
+	 * The constant DOUBLE_QUOTE.
+	 */
 	public static final char DOUBLE_QUOTE = '"';
+	/**
+	 * The constant SINGLE_QUOTES.
+	 */
 	public static final String SINGLE_QUOTES = "'";
+	/**
+	 * The constant DOUBLE_QUOTES.
+	 */
 	public static final String DOUBLE_QUOTES = "\"";
 	private static final int CHAR_DIGIT_OFFSET = '0';
 	private static final int CHAR_UPPER_OFFSET = 'A' - 10;
@@ -44,12 +71,13 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param index
-	 * @param escape
-	 *            例如：'\\'
-	 * @return
+	 * Is escaped boolean.
+	 *
+	 * @param source the source
+	 * @param index the index
+	 * @param escape 例如：'\\'
+	 *
+	 * @return boolean boolean
 	 */
 	public static boolean isEscaped(String source, int index, char escape) {
 		if (index > 0) {
@@ -66,12 +94,13 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param index
-	 * @param escape
-	 *            例如：'\\'
-	 * @return
+	 * Is escaped boolean.
+	 *
+	 * @param source the source
+	 * @param index the index
+	 * @param escape 例如：'\\'
+	 *
+	 * @return boolean boolean
 	 */
 	public static boolean isEscaped(StringBuilder source, int index, char escape) {
 		if (index > 0) {
@@ -88,9 +117,11 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param testCode
-	 * @return
+	 * Contains whitespace boolean.
+	 *
+	 * @param testCode the test code
+	 *
+	 * @return boolean boolean
 	 */
 	public static boolean containsWhitespace(final String testCode) {
 		if (null != testCode) {
@@ -105,13 +136,14 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param ch
-	 * @param beginIndex
-	 * @param escape
-	 *            例如：'\\'
-	 * @return
+	 * Index of int.
+	 *
+	 * @param source the source
+	 * @param ch the ch
+	 * @param fromIndex the from index
+	 * @param escape 例如：'\\'
+	 *
+	 * @return int int
 	 */
 	public static int indexOf(String source, char ch, int fromIndex, char escape) {
 		int index = source.indexOf(ch, fromIndex);
@@ -122,23 +154,27 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param str
-	 * @param caseInsensitive
-	 * @return
+	 * Index of int.
+	 *
+	 * @param source the source
+	 * @param str the str
+	 * @param caseInsensitive the case insensitive
+	 *
+	 * @return int int
 	 */
 	public static int indexOf(String source, String str, boolean caseInsensitive) {
 		return indexOf(source, str, 0, caseInsensitive);
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param str
-	 * @param fromIndex
-	 * @param caseInsensitive
-	 * @return
+	 * Index of int.
+	 *
+	 * @param source the source
+	 * @param str the str
+	 * @param fromIndex the from index
+	 * @param caseInsensitive the case insensitive
+	 *
+	 * @return int int
 	 */
 	public static int indexOf(String source, String str, int fromIndex, boolean caseInsensitive) {
 		int index, len;
@@ -172,12 +208,13 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param ch
-	 * @param escape
-	 *            例如：'\\'
-	 * @return
+	 * Index of int.
+	 *
+	 * @param source the source
+	 * @param ch the ch
+	 * @param escape 例如：'\\'
+	 *
+	 * @return int int
 	 */
 	public static int indexOf(String source, char ch, char escape) {
 		int index = source.indexOf(ch, 0);
@@ -188,13 +225,14 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param ch
-	 * @param beginIndex
-	 * @param escape
-	 *            例如：'\\'
-	 * @return
+	 * Index of int.
+	 *
+	 * @param source the source
+	 * @param ch the ch
+	 * @param fromIndex the from index
+	 * @param escape 例如：'\\'
+	 *
+	 * @return int int
 	 */
 	public static int indexOf(StringBuilder source, String ch, int fromIndex, char escape) {
 		int index = source.indexOf(ch, fromIndex);
@@ -205,12 +243,13 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param ch
-	 * @param escape
-	 *            例如：'\\'
-	 * @return
+	 * Index of int.
+	 *
+	 * @param source the source
+	 * @param ch the ch
+	 * @param escape 例如：'\\'
+	 *
+	 * @return int int
 	 */
 	public static int indexOf(StringBuilder source, String ch, char escape) {
 		int index = source.indexOf(ch, 0);
@@ -221,9 +260,12 @@ public final class StringUtil {
 	}
 
 	/**
-	 * @param str
-	 * @param prefix
-	 * @return
+	 * Starts with boolean.
+	 *
+	 * @param str the str
+	 * @param prefix the prefix
+	 *
+	 * @return boolean boolean
 	 */
 	public static boolean startsWith(String str, String prefix) {
 		if (null == str || null == prefix) {
@@ -244,9 +286,12 @@ public final class StringUtil {
 	}
 
 	/**
-	 * @param str
-	 * @param prefix
-	 * @return
+	 * Starts with ignore case boolean.
+	 *
+	 * @param str the str
+	 * @param prefix the prefix
+	 *
+	 * @return boolean boolean
 	 */
 	public static boolean startsWithIgnoreCase(String str, String prefix) {
 		if (null == str || null == prefix) {
@@ -267,9 +312,12 @@ public final class StringUtil {
 	}
 
 	/**
-	 * @param str
-	 * @param suffix
-	 * @return
+	 * Ends with boolean.
+	 *
+	 * @param str the str
+	 * @param suffix the suffix
+	 *
+	 * @return boolean boolean
 	 */
 	public static boolean endsWith(String str, String suffix) {
 		if (null == str || null == suffix) {
@@ -290,9 +338,12 @@ public final class StringUtil {
 	}
 
 	/**
-	 * @param str
-	 * @param suffix
-	 * @return
+	 * Ends with ignore case boolean.
+	 *
+	 * @param str the str
+	 * @param suffix the suffix
+	 *
+	 * @return boolean boolean
 	 */
 	public static boolean endsWithIgnoreCase(String str, String suffix) {
 		if (null == str || null == suffix) {
@@ -317,13 +368,12 @@ public final class StringUtil {
 	 * <p>
 	 * 不使用正则表达式全局替换（提升性能：测试将两个SPACE替换成一个中文空格，时间缩短为String.replaceAll的50%）
 	 * </p>
-	 * 
-	 * @param source
-	 * @param oldSub
-	 *            必须存在有效内容
-	 * @param newSub
-	 *            必须存在有效内容，允许空串("")
-	 * @return
+	 *
+	 * @param source the source
+	 * @param oldSub 必须存在有效内容
+	 * @param newSub 必须存在有效内容，允许空串("")
+	 *
+	 * @return string string
 	 */
 	public static String replaceAll(String source, String oldSub, String newSub) {
 		if (null != source) {
@@ -349,13 +399,12 @@ public final class StringUtil {
 	 * <p>
 	 * 不使用正则表达式全局替换（数组支持）
 	 * </p>
-	 * 
-	 * @param source
-	 * @param oldSub
-	 *            必须存在有效内容
-	 * @param newSub
-	 *            若null则使用空串("")代替，若数组长度不足oldSub，则重复最后一个
-	 * @return
+	 *
+	 * @param source the source
+	 * @param oldSub 必须存在有效内容
+	 * @param newSub 若null则使用空串("")代替，若数组长度不足oldSub，则重复最后一个
+	 *
+	 * @return string string
 	 */
 	public static String replaceAll(String source, String[] oldSub, String[] newSub) {
 		if (null != source) {
@@ -434,9 +483,12 @@ public final class StringUtil {
 	}
 
 	/**
-	 * @param source
-	 * @param ch
-	 * @return
+	 * Delete all string.
+	 *
+	 * @param source the source
+	 * @param ch the ch
+	 *
+	 * @return string string
 	 */
 	public static String deleteAll(String source, char ch) {
 		if (null != source && !source.isEmpty()) {
@@ -454,9 +506,12 @@ public final class StringUtil {
 	}
 
 	/**
-	 * @param source
-	 * @param subStr
-	 * @return
+	 * Delete all string.
+	 *
+	 * @param source the source
+	 * @param subStr the sub str
+	 *
+	 * @return string string
 	 */
 	public static String deleteAll(String source, String subStr) {
 		if (null != source && !source.isEmpty()) {
@@ -480,9 +535,10 @@ public final class StringUtil {
 	 * 前后使用单引号封闭，中间遇斜杠、单引号、回车、换行符用斜杠转义
 	 * <p>
 	 * TODO 先简单处理
-	 * 
-	 * @param source
-	 * @return
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String singleQuotes(String source) {
 		return replaceAll(source, ESCAPE_OLD_SINGLE, ESCAPE_NEW_SINGLE);
@@ -492,9 +548,10 @@ public final class StringUtil {
 	 * 前后使用双引号封闭，中间遇斜杠、双引号、回车、换行符用斜杠转义
 	 * <p>
 	 * TODO 先简单处理
-	 * 
-	 * @param source
-	 * @return
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String doubleQuotes(String source) {
 		return replaceAll(source, ESCAPE_OLD_DOUBLE, ESCAPE_NEW_DOUBLE);
@@ -505,12 +562,12 @@ public final class StringUtil {
 	 * Joins the elements of the provided array into a single String containing the provided list of
 	 * elements.
 	 * </p>
-	 *
+	 * <p>
 	 * <p>
 	 * No separator is added to the joined String. Null objects or empty strings within the array
 	 * are represented by empty strings.
 	 * </p>
-	 * 
+	 * <p>
 	 * <pre>
 	 * StringUtil.join(null)            = null
 	 * StringUtil.join([])              = ""
@@ -518,12 +575,13 @@ public final class StringUtil {
 	 * StringUtil.join(["a", "b", "c"]) = "abc"
 	 * StringUtil.join([null, "", "a"]) = "a"
 	 * </pre>
-	 * 
-	 * @param objs
-	 *            the values to join together, may be null
+	 *
+	 * @param objs the values to join together, may be null
+	 *
 	 * @return the joined String, {@code null} if null array input
-	 * @see #join(String[])
-	 * @see #join(String[], String)
+	 *
+	 * @see #join(String[]) #join(String[])#join(String[])
+	 * @see #join(String[], String) #join(String[], String)#join(String[], String)
 	 */
 	public static String join(Object... objs) {
 		if (null == objs) {
@@ -561,15 +619,14 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param separator
-	 *            若null则缺省是逗号
-	 * @param doubleQuotes
-	 *            表示是否强制使用双引号
-	 * @param escape
-	 *            表示若遇到双引号则使用转义字符（如'\\'），默认0为重复（双）引号
-	 * @return
+	 * Join string.
+	 *
+	 * @param source the source
+	 * @param separator 若null则缺省是逗号
+	 * @param doubleQuotes 表示是否强制使用双引号
+	 * @param escape 表示若遇到双引号则使用转义字符（如'\\'），默认0为重复（双）引号
+	 *
+	 * @return string string
 	 */
 	public static String join(String[] source, String separator, boolean doubleQuotes, char escape) {
 		if (null != source) {
@@ -628,45 +685,48 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param separator
-	 *            若null则缺省是逗号
-	 * @param doubleQuotes
-	 *            表示是否强制使用双引号
-	 * @return
+	 * Join string.
+	 *
+	 * @param source the source
+	 * @param separator 若null则缺省是逗号
+	 * @param doubleQuotes 表示是否强制使用双引号
+	 *
+	 * @return string string
 	 */
 	public static String join(String[] source, String separator, boolean doubleQuotes) {
 		return join(source, separator, doubleQuotes, (char) 0);
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param separator
-	 *            若null则缺省是逗号
-	 * @return
+	 * Join string.
+	 *
+	 * @param source the source
+	 * @param separator 若null则缺省是逗号
+	 *
+	 * @return string string
 	 */
 	public static String join(String[] source, String separator) {
 		return join(source, separator, false, (char) 0);
 	}
 
 	/**
-	 * 
-	 * @param source
-	 *            默认使用逗号分隔
-	 * @return
+	 * Join string.
+	 *
+	 * @param source 默认使用逗号分隔
+	 *
+	 * @return string string
 	 */
 	public static String join(String[] source) {
 		return join(source, null, false, (char) 0);
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param separator
-	 *            若null则缺省是逗号
-	 * @return
+	 * Join string.
+	 *
+	 * @param source the source
+	 * @param separator 若null则缺省是逗号
+	 *
+	 * @return string string
 	 */
 	public static String join(int[] source, String separator) {
 		if (null != source) {
@@ -689,19 +749,22 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 *            默认使用逗号分隔
-	 * @return
+	 * Join string.
+	 *
+	 * @param source 默认使用逗号分隔
+	 *
+	 * @return string string
 	 */
 	public static String join(int[] source) {
 		return join(source, null);
 	}
 
 	/**
-	 * 
-	 * @param hexString
-	 * @return
+	 * From hex string byte [ ].
+	 *
+	 * @param hexString the hex string
+	 *
+	 * @return byte [ ]
 	 */
 	public static byte[] fromHexString(String hexString) {
 		if (null != hexString) {
@@ -718,10 +781,12 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param prefix
-	 * @param b
-	 * @return
+	 * To hex string string.
+	 *
+	 * @param prefix the prefix
+	 * @param b the b
+	 *
+	 * @return string string
 	 */
 	public static String toHexString(String prefix, byte b[]) {
 		if (null != b) {
@@ -751,9 +816,11 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param b
-	 * @return
+	 * To hex string string.
+	 *
+	 * @param b the b
+	 *
+	 * @return string string
 	 */
 	public static String toHexString(byte b[]) {
 		return toHexString(null, b);
@@ -761,9 +828,10 @@ public final class StringUtil {
 
 	/**
 	 * ISO_1 (ISO-8859-1) 字符集通常是大部分平台的默认字符集，以此字符集存储的中文需要做转码处理。
-	 * 
-	 * @param source
-	 * @return
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String fromISO1WithGBK(String source) {
 		if (null == source || source.isEmpty()) {
@@ -775,9 +843,10 @@ public final class StringUtil {
 
 	/**
 	 * ISO_1 (ISO-8859-1) 字符集通常是大部分平台的默认字符集，以此字符集存储的中文需要做转码处理。
-	 * 
-	 * @param source
-	 * @return
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String toISO1WithGBK(String source) {
 		if (null == source || source.isEmpty()) {
@@ -789,9 +858,10 @@ public final class StringUtil {
 
 	/**
 	 * ISO_1 (ISO-8859-1) 字符集通常是大部分平台的默认字符集，以此字符集存储的中文需要做转码处理。
-	 * 
-	 * @param source
-	 * @return
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String fromISO1WithUTF8(String source) {
 		if (null == source || source.isEmpty()) {
@@ -803,9 +873,10 @@ public final class StringUtil {
 
 	/**
 	 * ISO_1 (ISO-8859-1) 字符集通常是大部分平台的默认字符集，以此字符集存储的中文需要做转码处理。
-	 * 
-	 * @param source
-	 * @return
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String toISO1WithUTF8(String source) {
 		if (null == source || source.isEmpty()) {
@@ -817,10 +888,11 @@ public final class StringUtil {
 
 	/**
 	 * 剥去首尾匹配的引号
-	 * 
-	 * @param source
-	 * @param escape
-	 * @return
+	 *
+	 * @param source the source
+	 * @param escape the escape
+	 *
+	 * @return string string
 	 */
 	public static String stripQuotes(String source, char escape) {
 		int index;
@@ -840,9 +912,10 @@ public final class StringUtil {
 
 	/**
 	 * 剥去首尾匹配的引号
-	 * 
-	 * @param source
-	 * @return
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String stripQuotes(String source) {
 		return stripQuotes(source, '\\');
@@ -850,16 +923,13 @@ public final class StringUtil {
 
 	/**
 	 * 分析格式串"key1=value1[;,& etc.]key2=value2[...]"，并转换为 Properties 对象
-	 * 
-	 * @param source
-	 * @param regex
-	 * @param excludeEmpty
-	 *            若true则剔除value为空的，缺省为false
-	 * @param upperCase
-	 *            若true则设置key为大写，缺省为false
-	 * @return 如果一个 key 存在多个 value 的则使用最后一个有效 value。
-	 *         <p>
-	 *         永远不会返回空值(null)
+	 *
+	 * @param source the source
+	 * @param regex the regex
+	 * @param excludeEmpty 若true则剔除value为空的，缺省为false
+	 * @param upperCase 若true则设置key为大写，缺省为false
+	 *
+	 * @return 如果一个 key 存在多个 value 的则使用最后一个有效 value。         <p>         永远不会返回空值(null)
 	 */
 	public static Properties parseProperties(String source, String regex, boolean excludeEmpty, boolean upperCase) {
 		Properties prop = new Properties();
@@ -893,12 +963,11 @@ public final class StringUtil {
 
 	/**
 	 * 分析格式串"key1=value1[;,& etc.]key2=value2[...]"，并转换为 Properties 对象
-	 * 
-	 * @param source
-	 * @param regex
-	 * @return 如果一个 key 存在多个 value 的则使用最后一个有效 value。
-	 *         <p>
-	 *         永远不会返回空值(null)
+	 *
+	 * @param source the source
+	 * @param regex the regex
+	 *
+	 * @return 如果一个 key 存在多个 value 的则使用最后一个有效 value。         <p>         永远不会返回空值(null)
 	 */
 	public static Properties parseProperties(String source, String regex) {
 		return parseProperties(source, regex, false, false);
@@ -906,16 +975,14 @@ public final class StringUtil {
 
 	/**
 	 * 分析格式串"key1=value1[;,& etc.]key2=value2[...]"，并转换为 Map 对象
-	 * 
-	 * @param source
-	 * @param regex
-	 * @param multiValue
-	 *            如果一个 key 存在多个 value 的则使用 List&lt;String&gt; 类型，否则为 String 类型，缺省为false
-	 * @param excludeEmpty
-	 *            若true则剔除value为空的，缺省为false
-	 * @param caseInsensitive
-	 *            若true则设置key为大写，缺省为false
-	 * @return 永远不会返回空值(null)
+	 *
+	 * @param source the source
+	 * @param regex the regex
+	 * @param multiValue 如果一个 key 存在多个 value 的则使用 List&lt;String&gt; 类型，否则为 String 类型，缺省为false
+	 * @param excludeEmpty 若true则剔除value为空的，缺省为false
+	 * @param caseInsensitive 若true则设置key为大写，缺省为false
+	 *
+	 * @return 永远不会返回空值(null) string map
 	 */
 	public static StringMap<Object> parseKeyValues(String source, String regex, boolean multiValue, boolean excludeEmpty, boolean caseInsensitive) {
 		StringMap<Object> keyValues = new StringLinkedHashMap<Object>();
@@ -963,12 +1030,12 @@ public final class StringUtil {
 
 	/**
 	 * 分析格式串"key1=value1[;,& etc.]key2=value2[...]"，并转换为 Map 对象
-	 * 
-	 * @param source
-	 * @param regex
-	 * @param multiValue
-	 *            如果一个 key 存在多个 value 的则使用 List&lt;String&gt; 类型，否则为 String 类型。
-	 * @return 永远不会返回空值(null)
+	 *
+	 * @param source the source
+	 * @param regex the regex
+	 * @param multiValue 如果一个 key 存在多个 value 的则使用 List&lt;String&gt; 类型，否则为 String 类型。
+	 *
+	 * @return 永远不会返回空值(null) string map
 	 */
 	public static StringMap<Object> parseKeyValues(String source, String regex, boolean multiValue) {
 		return parseKeyValues(source, regex, multiValue, false, false);
@@ -976,10 +1043,11 @@ public final class StringUtil {
 
 	/**
 	 * 分析格式串"key1=value1[;,& etc.]key2=value2[...]"，并转换为 Map 对象
-	 * 
-	 * @param source
-	 * @param regex
-	 * @return 永远不会返回空值(null)
+	 *
+	 * @param source the source
+	 * @param regex the regex
+	 *
+	 * @return 永远不会返回空值(null) string map
 	 */
 	public static StringMap<Object> parseKeyValues(String source, String regex) {
 		return parseKeyValues(source, regex, false, false, false);
@@ -987,13 +1055,11 @@ public final class StringUtil {
 
 	/**
 	 * 追加重复 repeatStr 并达到 totalLength 长度，超过长度的最后 repeatStr 部分截除
-	 * 
-	 * @param sb
-	 *            在此基础上追加，本长度不计入 totalLength
-	 * @param repeatStr
-	 *            不允许为空值(null)或空串("")，否则不做任何操作
-	 * @param totalLength
-	 *            应该大于 0，否则不做任何操作
+	 *
+	 * @param sb 在此基础上追加，本长度不计入 totalLength
+	 * @param repeatStr 不允许为空值(null)或空串("")，否则不做任何操作
+	 * @param totalLength 应该大于 0，否则不做任何操作
+	 *
 	 * @return
 	 */
 	public static void padding(StringBuilder sb, String repeatStr, int totalLength) {
@@ -1011,11 +1077,12 @@ public final class StringUtil {
 	}
 
 	/**
-	 * @param repeatStr
-	 *            不允许为空值(null)或空串("")，否则直接返回空串("")
-	 * @param totalLength
-	 *            应该大于 0，否则直接返回空串("")
-	 * @return
+	 * Padding string.
+	 *
+	 * @param repeatStr 不允许为空值(null)或空串("")，否则直接返回空串("")
+	 * @param totalLength 应该大于 0，否则直接返回空串("")
+	 *
+	 * @return string string
 	 */
 	public static String padding(String repeatStr, int totalLength) {
 		if (totalLength <= 0 || null == repeatStr || repeatStr.length() <= 0) {
@@ -1028,16 +1095,14 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 *            若null，则返回null
-	 * @param leadding
-	 *            若true，则前面填补，否则后面填补
-	 * @param repeatStr
-	 *            不允许为空值(null)或空串("")，否则直接返回source
-	 * @param totalLength
-	 *            应该大于source长度，否则直接返回source
-	 * @return
+	 * Padding string.
+	 *
+	 * @param source 若null，则返回null
+	 * @param leadding 若true，则前面填补，否则后面填补
+	 * @param repeatStr 不允许为空值(null)或空串("")，否则直接返回source
+	 * @param totalLength 应该大于source长度，否则直接返回source
+	 *
+	 * @return string string
 	 */
 	public static String padding(String source, boolean leadding, String repeatStr, int totalLength) {
 		if (null == source || source.length() >= totalLength || null == repeatStr || repeatStr.length() <= 0) {
@@ -1056,11 +1121,12 @@ public final class StringUtil {
 	}
 
 	/**
-	 * @param repeatChar
-	 *            不允许为空值(null)或空串("")，否则直接返回source
-	 * @param totalLength
-	 *            应该大于source长度，否则直接返回source
-	 * @return
+	 * Padding string.
+	 *
+	 * @param repeatChar 不允许为空值(null)或空串("")，否则直接返回source
+	 * @param totalLength 应该大于source长度，否则直接返回source
+	 *
+	 * @return string string
 	 */
 	public static String padding(char repeatChar, int totalLength) {
 		if (totalLength <= 0) {
@@ -1084,10 +1150,12 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param target
-	 * @return
+	 * Gets chars.
+	 *
+	 * @param source the source
+	 * @param target the target
+	 *
+	 * @return chars chars
 	 */
 	public static int getChars(String source, char[] target) {
 		if (null != source) {
@@ -1105,10 +1173,12 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param outputLen
-	 * @return
+	 * Get chars char [ ].
+	 *
+	 * @param source the source
+	 * @param outputLen the output len
+	 *
+	 * @return char [ ]
 	 */
 	public static char[] getChars(String source, int outputLen) {
 		if (null != source) {
@@ -1128,28 +1198,33 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @return
+	 * Get chars char [ ].
+	 *
+	 * @param source the source
+	 *
+	 * @return char [ ]
 	 */
 	public static char[] getChars(String source) {
 		return getChars(source, 0);
 	}
 
 	/**
-	 * 
-	 * @param charset
-	 *            不允许null
-	 * @return
+	 * Gets charset encoder.
+	 *
+	 * @param charset 不允许null
+	 *
+	 * @return charset encoder
 	 */
 	public static CharsetEncoder getCharsetEncoder(Charset charset) {
 		return charset.newEncoder().onMalformedInput(CodingErrorAction.REPLACE).onUnmappableCharacter(CodingErrorAction.REPLACE);
 	}
 
 	/**
-	 * 
-	 * @param charsetName
-	 * @return
+	 * Gets charset encoder.
+	 *
+	 * @param charsetName the charset name
+	 *
+	 * @return charset encoder
 	 */
 	public static CharsetEncoder getCharsetEncoder(String charsetName) {
 		return getCharsetEncoder(Charset.forName(charsetName));
@@ -1158,13 +1233,10 @@ public final class StringUtil {
 	/**
 	 * 从<b>cb</b>字符缓冲区中读取字符并编码到<b>bb</b>字节缓冲区，直至尽可能填满<b>bb</b>字节缓冲区为止，
 	 * 但不截断CJK等任何多字节字符集。也即从字符串中读取前n个字节但不截断汉字。
-	 * 
-	 * @param cb
-	 *            输入字符缓冲区，不允许null，最后读取位置为 cb.position()
-	 * @param bb
-	 *            输出字节缓冲区，不允许null，最后写入位置为 bb.position()
-	 * @param ce
-	 *            不局限于GB2312、GB18030等任何字符集，不允许null
+	 *
+	 * @param cb 输入字符缓冲区，不允许null，最后读取位置为 cb.position()
+	 * @param bb 输出字节缓冲区，不允许null，最后写入位置为 bb.position()
+	 * @param ce 不局限于GB2312、GB18030等任何字符集，不允许null
 	 */
 	public static void getBytes(CharBuffer cb, ByteBuffer bb, CharsetEncoder ce) {
 		try {
@@ -1189,10 +1261,11 @@ public final class StringUtil {
 
 	/**
 	 * 类似 new String(byte[] bytes, String charsetName), 但隐藏罕见的UnsupportedEncodingException异常。
-	 * 
-	 * @param bytes
-	 * @param charsetName
-	 * @return
+	 *
+	 * @param bytes the bytes
+	 * @param charsetName the charset name
+	 *
+	 * @return string string
 	 */
 	public static String valueOf(byte[] bytes, String charsetName) {
 		if (null != bytes) {
@@ -1208,12 +1281,13 @@ public final class StringUtil {
 	/**
 	 * 类似 new String(byte[] bytes, int offset, int length, String charsetName),
 	 * 但隐藏罕见的UnsupportedEncodingException异常。
-	 * 
-	 * @param bytes
-	 * @param offset
-	 * @param length
-	 * @param charsetName
-	 * @return
+	 *
+	 * @param bytes the bytes
+	 * @param offset the offset
+	 * @param length the length
+	 * @param charsetName the charset name
+	 *
+	 * @return string string
 	 */
 	public static String valueOf(byte[] bytes, int offset, int length, String charsetName) {
 		if (null != bytes) {
@@ -1228,11 +1302,11 @@ public final class StringUtil {
 
 	/**
 	 * 类似 new String(byte[] bytes, String charsetName), 但隐藏罕见的UnsupportedEncodingException异常。
-	 * 
-	 * @param bb
-	 *            不允许null
-	 * @param charsetName
-	 * @return
+	 *
+	 * @param bb 不允许null
+	 * @param charsetName the charset name
+	 *
+	 * @return string string
 	 */
 	public static String valueOf(ByteBuffer bb, String charsetName) {
 		if (null != bb) {
@@ -1247,11 +1321,10 @@ public final class StringUtil {
 
 	/**
 	 * 类似 String.valueOf(Object obj), 但对Number和Date类型做了兼容JavaScript等ECMAScript语言的处理。
-	 * 
-	 * @param obj
-	 *            an Object, may be null
-	 * @param defaultValue
-	 *            the default value to return, may be null
+	 *
+	 * @param obj an Object, may be null
+	 * @param defaultValue the default value to return, may be null
+	 *
 	 * @return obj.toString() if it is not null, defaultValue otherwise
 	 */
 	public static String valueOf(Object obj, String defaultValue) {
@@ -1272,11 +1345,10 @@ public final class StringUtil {
 
 	/**
 	 * 类似 String.valueOf(Object obj), 但对Number和Date类型做了兼容JavaScript等ECMAScript语言的处理。
-	 * 
-	 * @param obj
-	 *            an Object, may be null
-	 * @return if the argument is null, then a string equal to "null"; otherwise, the value of
-	 *         obj.toString() is returned.
+	 *
+	 * @param obj an Object, may be null
+	 *
+	 * @return if the argument is null, then a string equal to "null"; otherwise, the value of         obj.toString() is returned.
 	 */
 	public static String valueOf(Object obj) {
 		return valueOf(obj, "null");
@@ -1284,11 +1356,11 @@ public final class StringUtil {
 
 	/**
 	 * 类似 String.valueOf(Object obj), 但对Number和Date类型做了兼容JavaScript等ECMAScript语言的处理。
-	 * 
-	 * @param obj
-	 *            an Object, may be null
-	 * @return if the argument is null, then a string equal to "null"; otherwise, the value of
-	 *         obj.toString() is returned.
+	 *
+	 * @param obj an Object, may be null
+	 * @param ellipsisLen the ellipsis len
+	 *
+	 * @return if the argument is null, then a string equal to "null"; otherwise, the value of         obj.toString() is returned.
 	 */
 	public static String valueOf(Object obj, int ellipsisLen) {
 		String text = valueOf(obj, "null");
@@ -1303,10 +1375,10 @@ public final class StringUtil {
 
 	/**
 	 * 类似 String.toCharArray()
-	 * 
-	 * @param sb
-	 *            不允许null
-	 * @return 永远不会返回null
+	 *
+	 * @param sb 不允许null
+	 *
+	 * @return 永远不会返回null char [ ]
 	 */
 	public static char[] toCharArray(StringBuilder sb) {
 		int count = sb.length();
@@ -1317,11 +1389,11 @@ public final class StringUtil {
 
 	/**
 	 * 类似 String.getBytes(String charsetName), 但隐藏罕见的UnsupportedEncodingException异常。
-	 * 
-	 * @param sb
-	 *            不允许null
-	 * @param charsetName
-	 * @return 永远不会返回null
+	 *
+	 * @param sb 不允许null
+	 * @param charsetName the charset name
+	 *
+	 * @return 永远不会返回null byte [ ]
 	 */
 	public static byte[] getBytes(final StringBuilder sb, final String charsetName) {
 		if (sb.length() > 0) {
@@ -1337,11 +1409,11 @@ public final class StringUtil {
 
 	/**
 	 * 类似 String.getBytes(Charset charset)
-	 * 
-	 * @param sb
-	 *            不允许null
-	 * @param charset
-	 * @return 永远不会返回null
+	 *
+	 * @param sb 不允许null
+	 * @param charset the charset
+	 *
+	 * @return 永远不会返回null byte [ ]
 	 */
 	public static byte[] getBytes(final StringBuilder sb, final Charset charset) {
 		if (sb.length() > 0) {
@@ -1353,11 +1425,11 @@ public final class StringUtil {
 
 	/**
 	 * 同 String.getBytes(String charsetName), 但隐藏罕见的UnsupportedEncodingException异常。
-	 * 
-	 * @param s
-	 *            允许null
-	 * @param charsetName
-	 * @return
+	 *
+	 * @param s 允许null
+	 * @param charsetName the charset name
+	 *
+	 * @return byte [ ]
 	 */
 	public static byte[] getBytes(final String s, final String charsetName) {
 		if (null != s) {
@@ -1377,11 +1449,11 @@ public final class StringUtil {
 
 	/**
 	 * 同 String.getBytes(Charset charset)
-	 * 
-	 * @param s
-	 *            允许null
-	 * @param charset
-	 * @return
+	 *
+	 * @param s 允许null
+	 * @param charset the charset
+	 *
+	 * @return byte [ ]
 	 */
 	public static byte[] getBytes(final String s, final Charset charset) {
 		if (null != s) {
@@ -1397,13 +1469,13 @@ public final class StringUtil {
 
 	/**
 	 * 按指定字符集编码的最大字节长度分段截取为数组
-	 * 
-	 * @param source
-	 * @param maxBytes
-	 * @param charsetName
-	 * @param firstMD5
-	 *            若firstMD5为真，则返回数组的首项是所有字节的MD5
-	 * @return
+	 *
+	 * @param source the source
+	 * @param maxBytes the max bytes
+	 * @param charsetName the charset name
+	 * @param firstMD5 若firstMD5为真，则返回数组的首项是所有字节的MD5
+	 *
+	 * @return string [ ]
 	 */
 	public static String[] split(final String source, final int maxBytes, final String charsetName, final boolean firstMD5) {
 		CharsetEncoder ce = getCharsetEncoder(charsetName);
@@ -1451,22 +1523,24 @@ public final class StringUtil {
 
 	/**
 	 * 按指定字符集编码的最大字节长度分段截取为数组
-	 * 
-	 * @param source
-	 * @param maxBytes
-	 * @param charsetName
-	 * @return
+	 *
+	 * @param source the source
+	 * @param maxBytes the max bytes
+	 * @param charsetName the charset name
+	 *
+	 * @return string [ ]
 	 */
 	public static String[] split(final String source, final int maxBytes, final String charsetName) {
 		return split(source, maxBytes, charsetName, false);
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param len
-	 *            如果 len < 0 则表示从右侧（结尾部分）裁减 len 个字符
-	 * @return
+	 * Left string.
+	 *
+	 * @param source the source
+	 * @param len 如果 len < 0 则表示从右侧（结尾部分）裁减 len 个字符
+	 *
+	 * @return string string
 	 */
 	public static String left(final String source, final int len) {
 		final int endIndex;
@@ -1483,13 +1557,13 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param beginIndex
-	 *            若 beginIndex < 0 则忽略为 0
-	 * @param len
-	 *            如果 len < 0 则表示从右侧（结尾部分）裁减 len 个字符
-	 * @return
+	 * Mid string.
+	 *
+	 * @param source the source
+	 * @param beginIndex 若 beginIndex < 0 则忽略为 0
+	 * @param len 如果 len < 0 则表示从右侧（结尾部分）裁减 len 个字符
+	 *
+	 * @return string string
 	 */
 	public static String mid(final String source, final int beginIndex, final int len) {
 		int endIndex;
@@ -1519,11 +1593,12 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param beginIndex
-	 *            若 beginIndex < 0 则忽略为 0
-	 * @return
+	 * Mid string.
+	 *
+	 * @param source the source
+	 * @param beginIndex 若 beginIndex < 0 则忽略为 0
+	 *
+	 * @return string string
 	 */
 	public static String mid(final String source, final int beginIndex) {
 		int endIndex;
@@ -1538,11 +1613,12 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @param len
-	 *            如果 len < 0 则表示从左侧（开始部分）裁减 len 个字符
-	 * @return
+	 * Right string.
+	 *
+	 * @param source the source
+	 * @param len 如果 len < 0 则表示从左侧（开始部分）裁减 len 个字符
+	 *
+	 * @return string string
 	 */
 	public static String right(final String source, final int len) {
 		int endIndex;
@@ -1559,9 +1635,11 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @return
+	 * Left trim string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String leftTrim(final String source) {
 		int len;
@@ -1583,9 +1661,11 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @return
+	 * Right trim string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String rightTrim(final String source) {
 		int len;
@@ -1608,9 +1688,11 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @return
+	 * Trim string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String trim(final String source) {
 		if (null != source && source.length() > 0) {
@@ -1620,9 +1702,11 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @return
+	 * Trim to null string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String trimToNull(final String source) {
 		if (null != source && source.length() > 0) {
@@ -1635,9 +1719,11 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @return
+	 * Trim to empty string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String trimToEmpty(final String source) {
 		if (null != source && source.length() > 0) {
@@ -1650,9 +1736,11 @@ public final class StringUtil {
 	}
 
 	/**
-	 * 
-	 * @param source
-	 * @return
+	 * Is empty boolean.
+	 *
+	 * @param source the source
+	 *
+	 * @return boolean boolean
 	 */
 	public static boolean isEmpty(final String source) {
 		if (null != source && source.length() > 0) {
@@ -1735,13 +1823,14 @@ public final class StringUtil {
 
 	/**
 	 * 转换本地数字和字母（如中文数字和字母）为ASCII数字和字母，大小写不敏感
-	 * 
-	 * @param source
-	 * @param underscore
-	 * @param removeWhitespace
-	 * @param upperCase
-	 * @param maxCount
-	 * @return
+	 *
+	 * @param source the source
+	 * @param underscore the underscore
+	 * @param removeWhitespace the remove whitespace
+	 * @param upperCase the upper case
+	 * @param maxCount the max count
+	 *
+	 * @return string string
 	 */
 	public static String convertNativeLetterOrDigit(String source, boolean underscore, boolean removeWhitespace, boolean upperCase, int maxCount) {
 		if (upperCase) {
@@ -1753,12 +1842,13 @@ public final class StringUtil {
 
 	/**
 	 * 转换本地数字和字母（如中文数字和字母）为ASCII数字和字母，大小写不敏感
-	 * 
-	 * @param source
-	 * @param underscore
-	 * @param removeWhitespace
-	 * @param upperCase
-	 * @return
+	 *
+	 * @param source the source
+	 * @param underscore the underscore
+	 * @param removeWhitespace the remove whitespace
+	 * @param upperCase the upper case
+	 *
+	 * @return string string
 	 */
 	public static String convertNativeLetterOrDigit(String source, boolean underscore, boolean removeWhitespace, boolean upperCase) {
 		if (upperCase) {
@@ -1770,12 +1860,13 @@ public final class StringUtil {
 
 	/**
 	 * 转换本地数字和字母（如中文数字和字母）为ASCII数字和字母，大小写敏感
-	 * 
-	 * @param source
-	 * @param underscore
-	 * @param removeWhitespace
-	 * @param maxCount
-	 * @return
+	 *
+	 * @param source the source
+	 * @param underscore the underscore
+	 * @param removeWhitespace the remove whitespace
+	 * @param maxCount the max count
+	 *
+	 * @return string string
 	 */
 	public static String convertNativeLetterOrDigit(String source, boolean underscore, boolean removeWhitespace, int maxCount) {
 		return convertNativeLetterOrDigit(source, underscore, removeWhitespace, CHAR_UPPER_OFFSET, CHAR_LOWER_OFFSET, maxCount);
@@ -1783,11 +1874,12 @@ public final class StringUtil {
 
 	/**
 	 * 转换本地数字和字母（如中文数字和字母）为ASCII数字和字母，大小写敏感
-	 * 
-	 * @param source
-	 * @param underscore
-	 * @param removeWhitespace
-	 * @return
+	 *
+	 * @param source the source
+	 * @param underscore the underscore
+	 * @param removeWhitespace the remove whitespace
+	 *
+	 * @return string string
 	 */
 	public static String convertNativeLetterOrDigit(String source, boolean underscore, boolean removeWhitespace) {
 		return convertNativeLetterOrDigit(source, underscore, removeWhitespace, CHAR_UPPER_OFFSET, CHAR_LOWER_OFFSET, 0);
@@ -1855,12 +1947,13 @@ public final class StringUtil {
 
 	/**
 	 * 转换本地字母（如中文字母）为ASCII字母，大小写不敏感
-	 * 
-	 * @param source
-	 * @param removeWhitespace
-	 * @param upperCase
-	 * @param maxCount
-	 * @return
+	 *
+	 * @param source the source
+	 * @param removeWhitespace the remove whitespace
+	 * @param upperCase the upper case
+	 * @param maxCount the max count
+	 *
+	 * @return string string
 	 */
 	public static String convertNativeLetter(String source, boolean removeWhitespace, boolean upperCase, int maxCount) {
 		if (upperCase) {
@@ -1872,11 +1965,12 @@ public final class StringUtil {
 
 	/**
 	 * 转换本地字母（如中文字母）为ASCII字母，大小写不敏感
-	 * 
-	 * @param source
-	 * @param removeWhitespace
-	 * @param upperCase
-	 * @return
+	 *
+	 * @param source the source
+	 * @param removeWhitespace the remove whitespace
+	 * @param upperCase the upper case
+	 *
+	 * @return string string
 	 */
 	public static String convertNativeLetter(String source, boolean removeWhitespace, boolean upperCase) {
 		if (upperCase) {
@@ -1888,11 +1982,12 @@ public final class StringUtil {
 
 	/**
 	 * 转换本地字母（如中文字母）为ASCII字母，大小写敏感
-	 * 
-	 * @param source
-	 * @param removeWhitespace
-	 * @param maxCount
-	 * @return
+	 *
+	 * @param source the source
+	 * @param removeWhitespace the remove whitespace
+	 * @param maxCount the max count
+	 *
+	 * @return string string
 	 */
 	public static String convertNativeLetter(String source, boolean removeWhitespace, int maxCount) {
 		return convertNativeLetter(source, removeWhitespace, CHAR_UPPER_OFFSET, CHAR_LOWER_OFFSET, maxCount);
@@ -1900,10 +1995,11 @@ public final class StringUtil {
 
 	/**
 	 * 转换本地字母（如中文字母）为ASCII字母，大小写敏感
-	 * 
-	 * @param source
-	 * @param removeWhitespace
-	 * @return
+	 *
+	 * @param source the source
+	 * @param removeWhitespace the remove whitespace
+	 *
+	 * @return string string
 	 */
 	public static String convertNativeLetter(String source, boolean removeWhitespace) {
 		return convertNativeLetter(source, removeWhitespace, CHAR_UPPER_OFFSET, CHAR_LOWER_OFFSET, 0);
@@ -1911,11 +2007,12 @@ public final class StringUtil {
 
 	/**
 	 * 转换本地数字（如中文数字）为ASCII数字
-	 * 
-	 * @param source
-	 * @param removeWhitespace
-	 * @param maxCount
-	 * @return
+	 *
+	 * @param source the source
+	 * @param removeWhitespace the remove whitespace
+	 * @param maxCount the max count
+	 *
+	 * @return string string
 	 */
 	public static String convertNativeDigit(String source, boolean removeWhitespace, int maxCount) {
 		if (null == source || source.isEmpty()) {
@@ -1963,26 +2060,26 @@ public final class StringUtil {
 
 	/**
 	 * 转换本地数字（如中文数字）为ASCII数字
-	 * 
-	 * @param source
-	 * @param removeWhitespace
-	 * @return
+	 *
+	 * @param source the source
+	 * @param removeWhitespace the remove whitespace
+	 *
+	 * @return string string
 	 */
 	public static String convertNativeDigit(String source, boolean removeWhitespace) {
 		return convertNativeDigit(source, removeWhitespace, 0);
 	}
 
 	/**
-	 * @param source
-	 * @param maskingChar
-	 *            如 '*', 'x', 'X'
-	 * @param leftReserved
-	 *            左侧保留字符数，负数表示弱，若中间至少数不足则可占用
-	 * @param rightReserved
-	 *            右侧保留字符数，负数表示弱，若中间至少数不足则可占用，右侧比左侧优先占用，也优先补贴
-	 * @param middleLeast
-	 *            中间保留字符数，负数表示至少，正数表示最多，0表示无特殊要求
-	 * @return
+	 * Masking string.
+	 *
+	 * @param source the source
+	 * @param maskingChar 如 '*', 'x', 'X'
+	 * @param leftReserved 左侧保留字符数，负数表示弱，若中间至少数不足则可占用
+	 * @param rightReserved 右侧保留字符数，负数表示弱，若中间至少数不足则可占用，右侧比左侧优先占用，也优先补贴
+	 * @param middleLeast 中间保留字符数，负数表示至少，正数表示最多，0表示无特殊要求
+	 *
+	 * @return string string
 	 */
 	public static String masking(String source, char maskingChar, int leftReserved, int rightReserved, int middleLeast) {
 		int len;
@@ -2052,26 +2149,27 @@ public final class StringUtil {
 	}
 
 	/**
-	 * @param source
-	 * @param leftReserved
-	 *            左侧保留字符数，负数表示弱，若中间至少数不足则可占用
-	 * @param rightReserved
-	 *            右侧保留字符数，负数表示弱，若中间至少数不足则可占用，右侧比左侧优先占用，也优先补贴
-	 * @param middleLeast
-	 *            中间保留字符数，负数表示至少，正数表示最多，0表示无特殊要求
-	 * @return
+	 * Masking string.
+	 *
+	 * @param source the source
+	 * @param leftReserved 左侧保留字符数，负数表示弱，若中间至少数不足则可占用
+	 * @param rightReserved 右侧保留字符数，负数表示弱，若中间至少数不足则可占用，右侧比左侧优先占用，也优先补贴
+	 * @param middleLeast 中间保留字符数，负数表示至少，正数表示最多，0表示无特殊要求
+	 *
+	 * @return string string
 	 */
 	public static String masking(String source, int leftReserved, int rightReserved, int middleLeast) {
 		return masking(source, '*', leftReserved, rightReserved, middleLeast);
 	}
 
 	/**
-	 * @param source
-	 * @param leftReserved
-	 *            左侧保留字符数，负数表示弱，若中间至少数不足则可占用
-	 * @param rightReserved
-	 *            右侧保留字符数，负数表示弱，若中间至少数不足则可占用，右侧比左侧优先占用，也优先补贴
-	 * @return
+	 * Masking string.
+	 *
+	 * @param source the source
+	 * @param leftReserved 左侧保留字符数，负数表示弱，若中间至少数不足则可占用
+	 * @param rightReserved 右侧保留字符数，负数表示弱，若中间至少数不足则可占用，右侧比左侧优先占用，也优先补贴
+	 *
+	 * @return string string
 	 */
 	public static String masking(String source, int leftReserved, int rightReserved) {
 		return masking(source, leftReserved, rightReserved, 0);
@@ -2079,113 +2177,153 @@ public final class StringUtil {
 
 	/**
 	 * 可用于隐藏姓（包括复姓）
-	 * 
-	 * @param source
-	 * @return 至少隐藏一个汉字姓，最多保留两个汉字名
+	 *
+	 * @param source the source
+	 *
+	 * @return 至少隐藏一个汉字姓 ，最多保留两个汉字名
 	 */
 	public static String masking021(String source) {
 		return masking(source, 0, -2, -1);
 	}
 
 	/**
-	 * @param source
-	 * @return
+	 * Masking 11 string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String masking11(String source) {
 		return masking(source, 1, 1, 0);
 	}
 
 	/**
-	 * @param source
-	 * @return
+	 * Masking 22 string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String masking22(String source) {
 		return masking(source, 2, 2, 0);
 	}
 
 	/**
-	 * @param source
-	 * @return
+	 * Masking 32 string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String masking32(String source) {
 		return masking(source, 3, 2, 0);
 	}
 
 	/**
-	 * @param source
-	 * @return
+	 * Masking 33 string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String masking33(String source) {
 		return masking(source, 3, 3, 0);
 	}
 
 	/**
-	 * @param source
-	 * @return
+	 * Masking 34 string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String masking34(String source) {
 		return masking(source, 3, 4, 0);
 	}
 
 	/**
-	 * @param source
-	 * @return
+	 * Masking 42 string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String masking42(String source) {
 		return masking(source, 4, 2, 0);
 	}
 
 	/**
-	 * @param source
-	 * @return
+	 * Masking 43 string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String masking43(String source) {
 		return masking(source, 4, 3, 0);
 	}
 
 	/**
-	 * @param source
-	 * @return
+	 * Masking 44 string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String masking44(String source) {
 		return masking(source, 4, 4, 0);
 	}
 
 	/**
-	 * @param source
-	 * @return
+	 * Masking 52 string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String masking52(String source) {
 		return masking(source, 5, 2, 0);
 	}
 
 	/**
-	 * @param source
-	 * @return
+	 * Masking 53 string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String masking53(String source) {
 		return masking(source, 5, 3, 0);
 	}
 
 	/**
-	 * @param source
-	 * @return
+	 * Masking 54 string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String masking54(String source) {
 		return masking(source, 5, 4, 0);
 	}
 
 	/**
-	 * @param source
-	 * @return
+	 * Masking 63 string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String masking63(String source) {
 		return masking(source, 6, 3, 0);
 	}
 
 	/**
-	 * @param source
-	 * @return
+	 * Masking 64 string.
+	 *
+	 * @param source the source
+	 *
+	 * @return string string
 	 */
 	public static String masking64(String source) {
 		return masking(source, 6, 4, 0);
@@ -2193,14 +2331,15 @@ public final class StringUtil {
 
 	/**
 	 * 比较两个String数组,返回相同的并且无重复String数组
-	 * 
-	 * @param target1
-	 * @param target2
+	 *
+	 * @param target1 the target 1
+	 * @param target2 the target 2
+	 *
+	 * @return 返回相同的并且无重复String数组 string [ ]
+	 *
 	 * @Date 2014年06月24日
-	 * @return 返回相同的并且无重复String数组
 	 * @author CaiBo
 	 */
-
 	public static String[] comparingSame(String[] target1, String[] target2) {
 		Set<String> set = new HashSet<String>();
 		Arrays.sort(target1);
@@ -2225,14 +2364,13 @@ public final class StringUtil {
 	 * <p>
 	 * 当{@link#newLength}小于原字符串的长度时,原字符串将被截断,中文不会因为截断而产生乱码<br>
 	 * 将以“ ”(空格)来填充剩余
-	 * 
-	 * @param original
-	 *            原始字符串
-	 * @param newLength
-	 *            新的长度(字节数)
-	 * @param charset
-	 *            字符编码;如果为<code>null</code>,将采用当前文件系统编码或者“UTF-8”
-	 * @return 指定字节数的字符串
+	 *
+	 * @param original 原始字符串
+	 * @param newLength 新的长度(字节数)
+	 * @param charset 字符编码;如果为<code>null</code>,将采用当前文件系统编码或者“UTF-8”
+	 *
+	 * @return 指定字节数的字符串 str as new length
+	 *
 	 * @author CaiBo
 	 */
 	public static String getStrAsNewLength(final String original, final int newLength, Charset charset) {

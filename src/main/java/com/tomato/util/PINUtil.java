@@ -3,8 +3,17 @@ package com.tomato.util;
 import com.tomato.util.checkdigits.CheckDigit;
 import com.tomato.util.checkdigits.CheckISO7064Mod11_2;
 
+/**
+ * The type Pin util.
+ */
 public final class PINUtil {
+	/**
+	 * The constant MAX_PRCPIN_G1.
+	 */
 	public static final int MAX_PRCPIN_G1 = 15;
+	/**
+	 * The constant MAX_PRCPIN_G2.
+	 */
 	public static final int MAX_PRCPIN_G2 = 18;
 	private static final int MAX_PRCPIN_G1_YEAR2_OFFSET = 6;
 	private static final int MAX_PRCPIN_G1_YEAR2_VALUE = 19;
@@ -16,9 +25,11 @@ public final class PINUtil {
 	}
 
 	/**
-	 * 
-	 * @param digits
-	 * @return
+	 * Verify boolean.
+	 *
+	 * @param digits the digits
+	 *
+	 * @return boolean
 	 */
 	public static boolean verify(String digits) {
 		if (null != digits && digits.length() == MAX_PRCPIN_G2) {
@@ -28,9 +39,11 @@ public final class PINUtil {
 	}
 
 	/**
-	 * 
-	 * @param digits
-	 * @return
+	 * Upgrade string.
+	 *
+	 * @param digits the digits
+	 *
+	 * @return string
 	 */
 	public static String upgrade(String digits) {
 		if (null != digits) {
@@ -52,19 +65,23 @@ public final class PINUtil {
 	}
 
 	/**
-	 * 
-	 * @param digits
-	 * @return
+	 * Convert native string.
+	 *
+	 * @param digits the digits
+	 *
+	 * @return string
 	 */
 	public static String convertNative(String digits) {
 		return StringUtil.convertNativeLetterOrDigit(digits, false, true, true, MAX_PRCPIN_G2);
 	}
 
 	/**
-	 * 
-	 * @param digits1
-	 * @param digits2
-	 * @return
+	 * Visual equals boolean.
+	 *
+	 * @param digits1 the digits 1
+	 * @param digits2 the digits 2
+	 *
+	 * @return boolean
 	 */
 	public static boolean visualEquals(String digits1, String digits2) {
 		if (null == digits1 || digits1.isEmpty()) {

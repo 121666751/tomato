@@ -3,12 +3,14 @@ package com.tomato.util;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @since 2010-4-21 上午11:11:13
- * @version $Id: com.tomato.util.StringConcurrentHashMap.java 16594 2016-06-18 12:49:04Z WuJianqiang $
+ * The type String concurrent hash map.
+ *
+ * @param <V> the type parameter
+ *
  * @author WuJianqiang
  * @author CaiBo
- * 
- * @param <V>
+ * @version $Id : com.tomato.util.StringConcurrentHashMap.java 16594 2016-06-18 12:49:04Z WuJianqiang $
+ * @since 2010 -4-21 上午11:11:13
  */
 public class StringConcurrentHashMap<V> extends ConcurrentHashMap<String, V> implements StringMap<V> {
 	private static final long serialVersionUID = 1L;
@@ -17,15 +19,16 @@ public class StringConcurrentHashMap<V> extends ConcurrentHashMap<String, V> imp
 	private boolean caseInsensitive = true;
 
 	/**
-	 * 
+	 * Instantiates a new String concurrent hash map.
 	 */
 	public StringConcurrentHashMap() {
 		super();
 	}
 
 	/**
-	 * 
-	 * @param initialCapacity
+	 * Instantiates a new String concurrent hash map.
+	 *
+	 * @param initialCapacity the initial capacity
 	 */
 	public StringConcurrentHashMap(int initialCapacity) {
 		super(initialCapacity);
