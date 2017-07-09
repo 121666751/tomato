@@ -1,5 +1,7 @@
 package com.tomato.util;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,100 +13,10 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since 2017年6月13日 下午6:06:44
  */
-public class XIDUtil {
+public final class XIDUtil {
 
 	private static final Pattern PATTERN_MOBILE_VALID = Pattern.compile("^1[34578]\\d{9}$");
 	private static final Pattern PATTERN_MOBILE_GROUP = Pattern.compile("(^|\\D+)(1[34578]\\d[ ]?\\d{4}[ ]?\\d{4})(\\D+|$)");
-	/**
-	 * The constant MAX_NSRSBH_15.
-	 */
-	public static final int MAX_NSRSBH_15 = 15;
-	/**
-	 * The constant MAX_NSRSBH_18.
-	 */
-	public static final int MAX_NSRSBH_18 = 18;
-	private static final HashMap<Character, Integer> NSRSBH_CODE_15 = new HashMap<>(64);
-	private static final HashMap<Character, Integer> NSRSBH_CODE_18 = new HashMap<>(64);
-	private static final int[] POW_3_ARR = { 1, 3, 9, 27, 81, 243, 729, 2187, 6561, 19683, 59049, 177147, 531441, 1594323, 4782969, 14348907, 43046721 };
-	private static final int[] W_15 = { 0, 0, 0, 0, 0, 0, 3, 7, 9, 10, 5, 8, 4, 2 };
-
-
-	static {
-		initNsrsbhCode();
-	}
-
-	private static void initNsrsbhCode() {
-		NSRSBH_CODE_15.put('0', 0);
-		NSRSBH_CODE_15.put('1', 1);
-		NSRSBH_CODE_15.put('2', 2);
-		NSRSBH_CODE_15.put('3', 3);
-		NSRSBH_CODE_15.put('4', 4);
-		NSRSBH_CODE_15.put('5', 5);
-		NSRSBH_CODE_15.put('6', 6);
-		NSRSBH_CODE_15.put('7', 7);
-		NSRSBH_CODE_15.put('8', 8);
-		NSRSBH_CODE_15.put('9', 9);
-		NSRSBH_CODE_15.put('A', 10);
-		NSRSBH_CODE_15.put('B', 11);
-		NSRSBH_CODE_15.put('C', 12);
-		NSRSBH_CODE_15.put('D', 13);
-		NSRSBH_CODE_15.put('E', 14);
-		NSRSBH_CODE_15.put('F', 15);
-		NSRSBH_CODE_15.put('G', 16);
-		NSRSBH_CODE_15.put('H', 17);
-		NSRSBH_CODE_15.put('I', 18);
-		NSRSBH_CODE_15.put('J', 19);
-		NSRSBH_CODE_15.put('K', 20);
-		NSRSBH_CODE_15.put('L', 21);
-		NSRSBH_CODE_15.put('M', 22);
-		NSRSBH_CODE_15.put('N', 23);
-		NSRSBH_CODE_15.put('O', 24);
-		NSRSBH_CODE_15.put('P', 25);
-		NSRSBH_CODE_15.put('Q', 26);
-		NSRSBH_CODE_15.put('R', 27);
-		NSRSBH_CODE_15.put('S', 28);
-		NSRSBH_CODE_15.put('T', 29);
-		NSRSBH_CODE_15.put('U', 30);
-		NSRSBH_CODE_15.put('V', 31);
-		NSRSBH_CODE_15.put('W', 32);
-		NSRSBH_CODE_15.put('X', 33);
-		NSRSBH_CODE_15.put('Y', 34);
-		NSRSBH_CODE_15.put('Z', 35);
-
-		NSRSBH_CODE_18.put('0', 0);
-		NSRSBH_CODE_18.put('1', 1);
-		NSRSBH_CODE_18.put('2', 2);
-		NSRSBH_CODE_18.put('3', 3);
-		NSRSBH_CODE_18.put('4', 4);
-		NSRSBH_CODE_18.put('5', 5);
-		NSRSBH_CODE_18.put('6', 6);
-		NSRSBH_CODE_18.put('7', 7);
-		NSRSBH_CODE_18.put('8', 8);
-		NSRSBH_CODE_18.put('9', 9);
-		NSRSBH_CODE_18.put('A', 10);
-		NSRSBH_CODE_18.put('B', 11);
-		NSRSBH_CODE_18.put('C', 12);
-		NSRSBH_CODE_18.put('D', 13);
-		NSRSBH_CODE_18.put('E', 14);
-		NSRSBH_CODE_18.put('F', 15);
-		NSRSBH_CODE_18.put('G', 16);
-		NSRSBH_CODE_18.put('H', 17);
-		NSRSBH_CODE_18.put('J', 18);
-		NSRSBH_CODE_18.put('K', 19);
-		NSRSBH_CODE_18.put('L', 20);
-		NSRSBH_CODE_18.put('M', 21);
-		NSRSBH_CODE_18.put('N', 22);
-		NSRSBH_CODE_18.put('P', 23);
-		NSRSBH_CODE_18.put('Q', 24);
-		NSRSBH_CODE_18.put('R', 25);
-		NSRSBH_CODE_18.put('T', 26);
-		NSRSBH_CODE_18.put('U', 27);
-		NSRSBH_CODE_18.put('W', 28);
-		NSRSBH_CODE_18.put('X', 29);
-		NSRSBH_CODE_18.put('Y', 30);
-	}
-
-	// DO NOT CHANGE IT!
 	private static final String KEY_UNION_ID = "UnionId";
 	private static final String KEY_OPEN_ID = "OpenId";
 	private static final String KEY_PLATFORM_ID = "PlatformId";
@@ -115,7 +27,23 @@ public class XIDUtil {
 	private static final String KEY_NSRSBH_ID = "NsrsbhId";
 	private static final String KEY_NSRMC_ID = "NsrmcId";
 
-	// Prevent instantiation
+	public static final int MAX_NSRSBH_15 = 15;
+	public static final int MAX_NSRSBH_18 = 18;
+	private static final HashMap<Character, Integer> NSRSBH_CODE_15 = new HashMap<>(64);
+	private static final HashMap<Character, Integer> NSRSBH_CODE_18 = new HashMap<>(64);
+	private static final int[] POW_3_ARR = { 1, 3, 9, 27, 81, 243, 729, 2187, 6561, 19683, 59049, 177147, 531441, 1594323, 4782969, 14348907, 43046721 };
+	private static final int[] W_15 = { 0, 0, 0, 0, 0, 0, 3, 7, 9, 10, 5, 8, 4, 2 };
+
+	private static final String ICU_CLASS_NAME = "com.ibm.icu.text.Transliterator";
+	private static final String ICU_PYJC_ID = "Han-Latin;NFD;[:Nonspacing Mark:] Remove;[:Punctuation:] Remove; Upper();";
+	private static Object ICU_TRANSLITERATOR;
+	private static Method ICU_TRANSLATE_METHOD;
+
+	static {
+		initNsrsbhCode();
+		initICU();
+	}
+
 	private XIDUtil() {
 		super();
 	}
@@ -361,6 +289,46 @@ public class XIDUtil {
 	}
 
 	/**
+	 * 获取纳税人名称的拼音简称
+	 *
+	 * @return
+	 */
+	public static String getNsrmcPyjc(String nsrmc) {
+		if (nsrmc == null) {
+			return null;
+		}
+		char[] charArray = nsrmc.toCharArray();
+		StringBuilder sb = new StringBuilder(nsrmc.length());
+		// 根据《企业名称登记管理实施办法》第八条 企业名称应当使用符合国家规范的汉字，不得使用汉语拼音字母、阿拉伯数字。
+		for (char c : charArray) {
+			if (c > 127) {
+				sb.append(c);
+			}
+		}
+		if (sb.length() == 0) {
+			return nsrmc.toUpperCase();
+		}
+		nsrmc = sb.toString();
+		if (ICU_TRANSLITERATOR == null || ICU_TRANSLATE_METHOD == null) {
+			throw new RuntimeException("未加载ICU相关jar包，是否导入了icu4j包？");
+		}
+		String py;
+		try {
+			py = (String) ICU_TRANSLATE_METHOD.invoke(ICU_TRANSLITERATOR, nsrmc);
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			throw new RuntimeException("纳税人名称转换拼音异常: " + nsrmc, e);
+		}
+		String[] arr = py.split(" ");
+		sb.setLength(0);
+		for (String s : arr) {
+			if (s.length() > 0) {
+				sb.append(s.charAt(0));
+			}
+		}
+		return sb.toString();
+	}
+
+	/**
 	 * Is nsrsbh boolean.
 	 *
 	 * @param nsrsbh the nsrsbh
@@ -409,6 +377,102 @@ public class XIDUtil {
 			mod += (POW_3_ARR[i] % 31 * c);
 		}
 		return (mod = mod % 31) == 0 ? (c18 == 0) : (c18 == (31 - mod));
+	}
+
+	private static void initNsrsbhCode() {
+		NSRSBH_CODE_15.put('0', 0);
+		NSRSBH_CODE_15.put('1', 1);
+		NSRSBH_CODE_15.put('2', 2);
+		NSRSBH_CODE_15.put('3', 3);
+		NSRSBH_CODE_15.put('4', 4);
+		NSRSBH_CODE_15.put('5', 5);
+		NSRSBH_CODE_15.put('6', 6);
+		NSRSBH_CODE_15.put('7', 7);
+		NSRSBH_CODE_15.put('8', 8);
+		NSRSBH_CODE_15.put('9', 9);
+		NSRSBH_CODE_15.put('A', 10);
+		NSRSBH_CODE_15.put('B', 11);
+		NSRSBH_CODE_15.put('C', 12);
+		NSRSBH_CODE_15.put('D', 13);
+		NSRSBH_CODE_15.put('E', 14);
+		NSRSBH_CODE_15.put('F', 15);
+		NSRSBH_CODE_15.put('G', 16);
+		NSRSBH_CODE_15.put('H', 17);
+		NSRSBH_CODE_15.put('I', 18);
+		NSRSBH_CODE_15.put('J', 19);
+		NSRSBH_CODE_15.put('K', 20);
+		NSRSBH_CODE_15.put('L', 21);
+		NSRSBH_CODE_15.put('M', 22);
+		NSRSBH_CODE_15.put('N', 23);
+		NSRSBH_CODE_15.put('O', 24);
+		NSRSBH_CODE_15.put('P', 25);
+		NSRSBH_CODE_15.put('Q', 26);
+		NSRSBH_CODE_15.put('R', 27);
+		NSRSBH_CODE_15.put('S', 28);
+		NSRSBH_CODE_15.put('T', 29);
+		NSRSBH_CODE_15.put('U', 30);
+		NSRSBH_CODE_15.put('V', 31);
+		NSRSBH_CODE_15.put('W', 32);
+		NSRSBH_CODE_15.put('X', 33);
+		NSRSBH_CODE_15.put('Y', 34);
+		NSRSBH_CODE_15.put('Z', 35);
+
+		NSRSBH_CODE_18.put('0', 0);
+		NSRSBH_CODE_18.put('1', 1);
+		NSRSBH_CODE_18.put('2', 2);
+		NSRSBH_CODE_18.put('3', 3);
+		NSRSBH_CODE_18.put('4', 4);
+		NSRSBH_CODE_18.put('5', 5);
+		NSRSBH_CODE_18.put('6', 6);
+		NSRSBH_CODE_18.put('7', 7);
+		NSRSBH_CODE_18.put('8', 8);
+		NSRSBH_CODE_18.put('9', 9);
+		NSRSBH_CODE_18.put('A', 10);
+		NSRSBH_CODE_18.put('B', 11);
+		NSRSBH_CODE_18.put('C', 12);
+		NSRSBH_CODE_18.put('D', 13);
+		NSRSBH_CODE_18.put('E', 14);
+		NSRSBH_CODE_18.put('F', 15);
+		NSRSBH_CODE_18.put('G', 16);
+		NSRSBH_CODE_18.put('H', 17);
+		NSRSBH_CODE_18.put('J', 18);
+		NSRSBH_CODE_18.put('K', 19);
+		NSRSBH_CODE_18.put('L', 20);
+		NSRSBH_CODE_18.put('M', 21);
+		NSRSBH_CODE_18.put('N', 22);
+		NSRSBH_CODE_18.put('P', 23);
+		NSRSBH_CODE_18.put('Q', 24);
+		NSRSBH_CODE_18.put('R', 25);
+		NSRSBH_CODE_18.put('T', 26);
+		NSRSBH_CODE_18.put('U', 27);
+		NSRSBH_CODE_18.put('W', 28);
+		NSRSBH_CODE_18.put('X', 29);
+		NSRSBH_CODE_18.put('Y', 30);
+	}
+
+
+	private static void initICU() {
+		Class<?> clazz = null;
+		try {
+			clazz = Class.forName(ICU_CLASS_NAME);
+		} catch (ClassNotFoundException e) {
+		}
+		if (clazz == null) {
+			return;
+		}
+		Method getInstance = null;
+		try {
+			getInstance = clazz.getMethod("getInstance", String.class);
+			ICU_TRANSLATE_METHOD = clazz.getMethod("transliterate", String.class);
+		} catch (NoSuchMethodException | SecurityException e) {
+		}
+		if (ICU_TRANSLATE_METHOD == null) {
+			return;
+		}
+		try {
+			ICU_TRANSLITERATOR = getInstance.invoke(null, ICU_PYJC_ID);
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+		}
 	}
 
 }
