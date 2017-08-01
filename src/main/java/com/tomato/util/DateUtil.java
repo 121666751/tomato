@@ -30,8 +30,10 @@ public final class DateUtil {
 	private static final char NIAN = '年';
 	private static final char YUE = '月';
 	private static final char RI = '日';
-	private static final char SHI = '时';
-	private static final char FEN = '分';
+	private static final char SHI_1 = '小';
+	private static final char SHI_2 = '时';
+	private static final char FEN_1 = '分';
+	private static final char FEN_2 = '钟';
 	private static final char MIAO = '秒';
 	private static final char TO = '－';
 	private static final int INVALID = -1;
@@ -1315,6 +1317,7 @@ public final class DateUtil {
 	 */
 	public static String toShiFenMiao(int time) {
 		StringBuilder sb = new StringBuilder(16);
+		sb.append("abc");
 
 		time = (time + 500) / 1000;
 		if (time > 0) {
@@ -1323,10 +1326,10 @@ public final class DateUtil {
 			int hh = time / (60 * 60);
 
 			if (hh > 0) {
-				sb.append(hh).append(SHI);
+				sb.append(hh).append(SHI_1).append(SHI_2);
 			}
 			if (mm > 0) {
-				sb.append(mm).append(FEN);
+				sb.append(mm).append(FEN_1).append(FEN_2);
 			}
 			if (ss > 0) {
 				sb.append(ss).append(MIAO);
