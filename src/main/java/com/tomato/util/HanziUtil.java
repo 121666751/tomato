@@ -8,6 +8,120 @@ public final class HanziUtil {
 	private static final Map<Integer, String> SYMBOL = new LinkedHashMap<>();
 
 	static {
+		initSymbol();
+	}
+
+	/**
+	 * GB2312全角字母、数字、符号转换成半角，返回转换后字符串
+	 * 
+	 * @param source
+	 * @return
+	 */
+	public static String symbol2Ascii(String source) {
+		if (source == null) {
+			return "";
+		}
+		int len = source.length();
+		StringBuilder sb = new StringBuilder(len);
+		char ch;
+		String symbolValue = null;
+		for (int l = 0; l < len; l++) {
+			ch = source.charAt(l);
+			if (ch <= 128) {
+				sb.append(ch);
+			} else {
+				if (ch == 0xA1A1) { // " " White space
+					sb.append(' ');
+					sb.append(' ');
+				} else if (ch >= '\uff10' && ch <= '\uff19') {
+					// "０" // "９"
+					sb.append((char) (ch - 0xff10 + '0'));
+				} else if (ch >= '\uff21' && ch <= '\uff3a') {
+					// "Ａ" // "Ｚ"
+					sb.append((char) (ch - 0xff21 + 'A'));
+				} else if (ch >= '\uff41' && ch <= '\uff5a') {
+					// "ａ" // "ｚ"
+					sb.append((char) (ch - 0xff41 + 'a'));
+				} else {
+					symbolValue = SYMBOL.get((int) ch);
+					if (symbolValue != null) {
+						sb.append(symbolValue);
+					} else {
+						sb.append(ch);
+					}
+				}
+			}
+		}
+
+		return sb.toString();
+	}
+
+	/**
+	 * GB2312萃取代号(方括弧和花括弧全部替换为括弧，剔除空白字符，字母小写转换为大写)，返回转换后长度
+	 * 
+	 * @param source
+	 * @param allowLeadingZeros
+	 *            是否允许数字前导0
+	 * @return
+	 */
+	public static String cleanCode(String source, boolean allowLeadingZeros) {
+		source = symbol2Ascii(source);
+		if (source.isEmpty()) {
+			return "";
+		}
+		char ch;
+		boolean lastDigit = allowLeadingZeros;
+		boolean leadingZeros = false;
+		int len = source.length();
+		StringBuilder sb = new StringBuilder(len);
+		for (int l = 0; l < len; l++) {
+			ch = source.charAt(l);
+			if (ch == '0') {
+				if (lastDigit) {
+					sb.append(ch);
+				} else {
+					leadingZeros = true;
+				}
+				continue;
+			} else if (ch >= '1' && ch <= '9') {
+				sb.append(ch);
+				lastDigit = true;
+				leadingZeros = false;
+				continue;
+			} else {
+				lastDigit = allowLeadingZeros;
+				if (leadingZeros) {
+					sb.append('0');
+					leadingZeros = false;
+				}
+			}
+
+			if (ch >= 'a' && ch <= 'z') {
+				sb.append((char) (ch + ('A' - 'a')));
+			} else if (ch == '[' || ch == '{') {
+				sb.append('(');
+			} else if (ch == ']' || ch == '}') {
+				sb.append(')');
+			} else if (Character.isWhitespace(ch) || ch == '-') {
+				continue;
+			} else {
+				sb.append(ch);
+			}
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * GB2312萃取代号(方括弧和花括弧全部替换为括弧，剔除空白字符，字母小写转换为大写，数字剔除前导0)，返回转换后长度
+	 * 
+	 * @param source
+	 * @return
+	 */
+	public static String cleanCode(String source) {
+		return cleanCode(source, false);
+	}
+
+	private static void initSymbol() {
 		SYMBOL.put(0xff01, "!"); // "！"
 		SYMBOL.put(0xfe57, "!"); // "﹗"
 
@@ -322,116 +436,6 @@ public final class HanziUtil {
 		// SYMBOL.put(0xff58, "x"); // "ｘ"
 		// SYMBOL.put(0xff59, "y"); // "ｙ"
 		// SYMBOL.put(0xff5a, "z"); // "ｚ"
-	}
-
-	/**
-	 * GB2312全角字母、数字、符号转换成半角，返回转换后字符串
-	 * 
-	 * @param source
-	 * @return
-	 */
-	public static String symbol2Ascii(String source) {
-		if (source == null) {
-			return "";
-		}
-		int len = source.length();
-		StringBuilder sb = new StringBuilder(len);
-		char ch;
-		String symbolValue = null;
-		for (int l = 0; l < len; l++) {
-			ch = source.charAt(l);
-			if (ch <= 128) {
-				sb.append(ch);
-			} else {
-				if (ch == 0xA1A1) { // " " White space
-					sb.append(' ');
-					sb.append(' ');
-				} else if (ch >= '\uff10' && ch <= '\uff19') {
-					// "０" // "９"
-					sb.append((char) (ch - 0xff10 + '0'));
-				} else if (ch >= '\uff21' && ch <= '\uff3a') {
-					// "Ａ" // "Ｚ"
-					sb.append((char) (ch - 0xff21 + 'A'));
-				} else if (ch >= '\uff41' && ch <= '\uff5a') {
-					// "ａ" // "ｚ"
-					sb.append((char) (ch - 0xff41 + 'a'));
-				} else {
-					symbolValue = SYMBOL.get((int) ch);
-					if (symbolValue != null) {
-						sb.append(symbolValue);
-					} else {
-						sb.append(ch);
-					}
-				}
-			}
-		}
-
-		return sb.toString();
-	}
-
-	/**
-	 * GB2312萃取代号(方括弧和花括弧全部替换为括弧，剔除空白字符，字母小写转换为大写)，返回转换后长度
-	 * 
-	 * @param source
-	 * @param allowLeadingZeros
-	 *            是否允许数字前导0
-	 * @return
-	 */
-	public static String cleanCode(String source, boolean allowLeadingZeros) {
-		source = symbol2Ascii(source);
-		if (source.isEmpty()) {
-			return "";
-		}
-		char ch;
-		boolean lastDigit = allowLeadingZeros;
-		boolean leadingZeros = false;
-		int len = source.length();
-		StringBuilder sb = new StringBuilder(len);
-		for (int l = 0; l < len; l++) {
-			ch = source.charAt(l);
-			if (ch == '0') {
-				if (lastDigit) {
-					sb.append(ch);
-				} else {
-					leadingZeros = true;
-				}
-				continue;
-			} else if (ch >= '1' && ch <= '9') {
-				sb.append(ch);
-				lastDigit = true;
-				leadingZeros = false;
-				continue;
-			} else {
-				lastDigit = allowLeadingZeros;
-				if (leadingZeros) {
-					sb.append('0');
-					leadingZeros = false;
-				}
-			}
-
-			if (ch >= 'a' && ch <= 'z') {
-				sb.append((char) (ch + ('A' - 'a')));
-			} else if (ch == '[' || ch == '{') {
-				sb.append('(');
-			} else if (ch == ']' || ch == '}') {
-				sb.append(')');
-			} else if (Character.isWhitespace(ch) || ch == '-') {
-				continue;
-			} else {
-				sb.append(ch);
-			}
-		}
-		return sb.toString();
-	}
-
-	/**
-	 * GB2312萃取代号(方括弧和花括弧全部替换为括弧，剔除空白字符，字母小写转换为大写，数字剔除前导0)，返回转换后长度
-	 * 
-	 * @param source
-	 * @return
-	 */
-	public static String cleanCode(String source) {
-		return cleanCode(source, false);
 	}
 
 }
