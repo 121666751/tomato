@@ -6,13 +6,6 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * The type Xid util.
- *
- * @author CaiBo
- * @version $Id$
- * @since 2017年6月13日 下午6:06:44
- */
 public final class XIDUtil {
 
 	private static final Pattern PATTERN_MOBILE_VALID = Pattern.compile("^1[34578]\\d{9}$");
@@ -449,7 +442,6 @@ public final class XIDUtil {
 		NSRSBH_CODE_18.put('X', 29);
 		NSRSBH_CODE_18.put('Y', 30);
 	}
-
 
 	private static void initICU() {
 		Class<?> clazz = null;

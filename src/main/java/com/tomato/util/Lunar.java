@@ -8,12 +8,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-/**
- * @since Jun 19, 2012 2:18:37 PM
- * @version $Id: Lunar.java 26111 2016-12-14 08:49:42Z HuYu $
- * @author WuJianqiang
- * 
- */
 public class Lunar {
 	private static final int MIN_OF_YEAR = 1900;
 	private static final int MAX_OF_YEAR = 2099;

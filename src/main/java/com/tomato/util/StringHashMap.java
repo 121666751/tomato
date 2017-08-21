@@ -2,19 +2,12 @@ package com.tomato.util;
 
 import java.util.HashMap;
 
-/**
- * The type String hash map.
- *
- * @param <V> the type parameter
- *
- * @author WuJianqiang
- * @version $Id : com.tomato.util.StringHashMap.java 16594 2016-06-18 12:49:04Z WuJianqiang $
- * @since 2010 -4-21 上午11:11:13
- */
 public class StringHashMap<V> extends HashMap<String, V> implements StringMap<V> {
 	private static final long serialVersionUID = 1L;
 
-	/** Case Sensitive option */
+	/**
+	 * Case Sensitive option
+	 */
 	private boolean caseInsensitive = true;
 
 	/**
@@ -62,7 +55,7 @@ public class StringHashMap<V> extends HashMap<String, V> implements StringMap<V>
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	@Override
 	public boolean containsKey(Object key) {
@@ -86,7 +79,7 @@ public class StringHashMap<V> extends HashMap<String, V> implements StringMap<V>
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	@Override
 	public V remove(Object key) {
@@ -110,7 +103,7 @@ public class StringHashMap<V> extends HashMap<String, V> implements StringMap<V>
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	@Override
 	public V get(Object key) {
