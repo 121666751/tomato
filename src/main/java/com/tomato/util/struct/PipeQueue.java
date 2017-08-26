@@ -33,6 +33,7 @@ public class PipeQueue<E> implements Queue<E> {
 	// 用于标记数组中有效元素的起始位置下标
 	private int head = -1;
 	private int tail = -1;
+	// 由于没法区分空和满的情况，所以还是需要一个大小
 	private int size;
 
 	private static final int MIN_INITIAL_CAPACITY = 8;
@@ -56,13 +57,6 @@ public class PipeQueue<E> implements Queue<E> {
 
 	@Override
 	public boolean contains(Object o) {
-		for (int i = 0; i < arr.length; i++) {
-			if (arr[i] == null) {
-				break;
-			} else if (arr[i].equals(o)) {
-				return true;
-			}
-		}
 		return false;
 	}
 
@@ -85,12 +79,45 @@ public class PipeQueue<E> implements Queue<E> {
 
 	@Override
 	public boolean add(E e) {
-		return false;
+		if (tail < 0) {
+			tail = 0;
+		}
+		if (size == arr.length) {
+			// 当前队列已经满了，头部指针往后移动一格
+			head++;
+			if (head == arr.length) {
+				head = 0;
+			}
+			arr[tail] = e;
+			++tail;
+			if (tail == arr.length) {
+				tail = 0;
+			}
+		} else {
+			arr[tail] = e;
+			tail++;
+			if (tail == arr.length) {
+				tail = 0;
+			}
+			size++;
+		}
+		if (head < 0) {
+			head = 0;
+		}
+		return true;
 	}
 
 	@Override
 	public boolean remove(Object o) {
-		return false;
+		if (size == 0) {
+			return false;
+		}
+		head++;
+		if (head == arr.length) {
+			head = 0;
+		}
+		size--;
+		return true;
 	}
 
 	@Override
@@ -115,7 +142,9 @@ public class PipeQueue<E> implements Queue<E> {
 
 	@Override
 	public void clear() {
-
+		size = 0;
+		head = -1;
+		tail = -1;
 	}
 
 	@Override
@@ -130,16 +159,50 @@ public class PipeQueue<E> implements Queue<E> {
 
 	@Override
 	public E poll() {
-		return null;
+		if (size == 0) {
+			return null;
+		}
+		E r = (E) arr[head];
+		head++;
+		if (head == arr.length) {
+			head = -1;
+		}
+		size--;
+		return r;
 	}
 
 	@Override
 	public E element() {
-		return null;
+		throw new RuntimeException("不支持改方法");
 	}
 
 	@Override
 	public E peek() {
-		return null;
+		if (size == 0) {
+			return null;
+		}
+		return (E) arr[head];
+	}
+
+	@Override
+	public String toString() {
+		if (size == 0) {
+			return "[]";
+		}
+		int count = 0;
+		StringBuilder sb = new StringBuilder(arr.length * 16);
+		sb.append('[');
+		for (int i = head; ; i++) {
+			if (i == arr.length) {
+				i = 0;
+			}
+			if (count > 0 && i == tail) {
+				break;
+			}
+			count++;
+			sb.append(String.valueOf(arr[i])).append(',');
+		}
+		sb.setCharAt(sb.length() - 1, ']');
+		return sb.toString();
 	}
 }
