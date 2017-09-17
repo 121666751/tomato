@@ -6,8 +6,10 @@ import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.util.regex.Pattern;
 
-
 public final class NumberUtil {
+
+	private static final char[] MAX_INT_ARRAY = String.valueOf(Integer.MAX_VALUE).toCharArray();
+
 	public static final int LESS = -1;
 	public static final int EQUAL = 0;
 	public static final int GREATER = 1;
@@ -46,9 +48,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * @since Apr 26, 2016 8:20:32 PM
 	 * @author WuJianqiang
-	 *
+	 * @since Apr 26, 2016 8:20:32 PM
 	 */
 	public static class InvalidNumber extends BigDecimal {
 
@@ -58,7 +59,7 @@ public final class NumberUtil {
 		private static final long serialVersionUID = 1L;
 
 		/**
-		 * 
+		 *
 		 */
 		private InvalidNumber() {
 			super(0);
@@ -75,9 +76,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param s
 	 * @param defaultValue
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回缺省值
 	 */
 	public static byte parseByte(String s, byte defaultValue) {
@@ -89,8 +90,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param s
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0
 	 */
 	public static byte parseByte(String s) {
@@ -102,9 +103,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回缺省值
 	 */
 	public static byte parseByte(Object value, byte defaultValue) {
@@ -116,8 +117,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0
 	 */
 	public static byte parseByte(Object value) {
@@ -129,9 +130,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param s
 	 * @param defaultValue
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回缺省值
 	 */
 	public static short parseShort(String s, short defaultValue) {
@@ -143,8 +144,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param s
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0
 	 */
 	public static short parseShort(String s) {
@@ -156,9 +157,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回缺省值
 	 */
 	public static short parseShort(Object value, short defaultValue) {
@@ -170,8 +171,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0
 	 */
 	public static short parseShort(Object value) {
@@ -183,9 +184,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param s
 	 * @param defaultValue
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回缺省值
 	 */
 	public static int parseInt(String s, int defaultValue) {
@@ -197,8 +198,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param s
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0
 	 */
 	public static int parseInt(String s) {
@@ -210,9 +211,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回缺省值
 	 */
 	public static int parseInt(Object value, int defaultValue) {
@@ -224,8 +225,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0
 	 */
 	public static int parseInt(Object value) {
@@ -237,9 +238,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param s
 	 * @param defaultValue
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回缺省值
 	 */
 	public static long parseLong(String s, long defaultValue) {
@@ -251,8 +252,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param s
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0L
 	 */
 	public static long parseLong(String s) {
@@ -264,9 +265,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回缺省值
 	 */
 	public static long parseLong(Object value, long defaultValue) {
@@ -278,8 +279,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0L
 	 */
 	public static long parseLong(Object value) {
@@ -291,9 +292,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param s
 	 * @param defaultValue
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回缺省值
 	 */
 	public static float parseFloat(String s, float defaultValue) {
@@ -305,8 +306,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param s
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回缺省值
 	 */
 	public static float parseFloat(String s) {
@@ -318,9 +319,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回缺省值
 	 */
 	public static float parseFloat(Object value, float defaultValue) {
@@ -332,8 +333,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回缺省值
 	 */
 	public static float parseFloat(Object value) {
@@ -345,9 +346,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param s
 	 * @param defaultValue
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回缺省值
 	 */
 	public static double parseDouble(String s, double defaultValue) {
@@ -359,8 +360,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param s
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0.0D
 	 */
 	public static double parseDouble(String s) {
@@ -372,9 +373,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回缺省值
 	 */
 	public static double parseDouble(Object value, double defaultValue) {
@@ -386,8 +387,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0.0D
 	 */
 	public static double parseDouble(Object value) {
@@ -399,9 +400,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、空串("")或"null"，则返回null，存在格式异常则返回 defaultValue
 	 */
 	public static Integer integerOf(Object value, Integer defaultValue) {
@@ -417,8 +418,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、空串("")或"null"，则返回null，存在格式异常则返回 0
 	 */
 	public static Integer integerOf(Object value) {
@@ -426,9 +427,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、空串("")或"null"，则返回null，存在格式异常则返回 defaultValue
 	 */
 	public static Byte byteOf(Object value, Byte defaultValue) {
@@ -444,8 +445,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、空串("")或"null"，则返回null，存在格式异常则返回 0
 	 */
 	public static Byte byteOf(Object value) {
@@ -453,9 +454,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、空串("")或"null"，则返回null，存在格式异常则返回 defaultValue
 	 */
 	public static Short shortOf(Object value, Short defaultValue) {
@@ -471,8 +472,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、空串("")或"null"，则返回null，存在格式异常则返回 0
 	 */
 	public static Short shortOf(Object value) {
@@ -480,9 +481,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、空串("")或"null"，则返回null，存在格式异常则返回 defaultValue
 	 */
 	public static Long longOf(Object value, Long defaultValue) {
@@ -498,8 +499,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、空串("")或"null"，则返回null，存在格式异常则返回 0L
 	 */
 	public static Long longOf(Object value) {
@@ -507,9 +508,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、空串("")或"null"，则返回null，存在格式异常则返回 defaultValue
 	 */
 	public static Float floatOf(Object value, Float defaultValue) {
@@ -532,8 +533,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、空串("")或"null"，则返回null，存在格式异常则返回 0.0F
 	 */
 	public static Float floatOf(Object value) {
@@ -541,9 +542,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、空串("")或"null"，则返回null，存在格式异常则返回 defaultValue
 	 */
 	public static Double doubleOf(Object value, Double defaultValue) {
@@ -566,8 +567,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、空串("")或"null"，则返回null，存在格式异常则返回 0.0D
 	 */
 	public static Double doubleOf(Object value) {
@@ -576,10 +577,11 @@ public final class NumberUtil {
 
 	/**
 	 * 截除小数后面的 0 尾数，并尽量转换为整数
-	 * 
+	 *
 	 * @param n
 	 * @param scale
-	 *            超长小数位数的首先四舍五入
+	 * 		超长小数位数的首先四舍五入
+	 *
 	 * @return
 	 */
 	public static Number stripTrailingZeros(Number n, int scale) {
@@ -618,9 +620,11 @@ public final class NumberUtil {
 
 	/**
 	 * 首先截除 {@code 15} 位小数位后的尾数，然后截除余下小数后面的 0 尾数，并尽量转换为整数
-	 * 
+	 *
 	 * @param n
+	 *
 	 * @return
+	 *
 	 * @see java.math.MathContext#DECIMAL64
 	 */
 	public static Number stripTrailingZeros(Number n) {
@@ -630,6 +634,7 @@ public final class NumberUtil {
 	/**
 	 * @param s
 	 * @param defaultValue
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")，则返回null，存在格式异常则返回 defaultValue
 	 */
 	public static BigDecimal bigDecimalOf(final String s, final BigDecimal defaultValue) {
@@ -654,6 +659,7 @@ public final class NumberUtil {
 
 	/**
 	 * @param s
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")，则返回null，存在格式异常则返回 0
 	 */
 	public static BigDecimal bigDecimalOf(final String s) {
@@ -662,9 +668,10 @@ public final class NumberUtil {
 
 	/**
 	 * 无损数字解析，可能返回类型：Integer, Long, BigInteger, BigDecimal
-	 * 
+	 *
 	 * @param s
 	 * @param defaultValue
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")，则返回null，存在格式异常则返回 defaultValue
 	 */
 	public static Number numberOf(final String s, final Number defaultValue) {
@@ -720,8 +727,9 @@ public final class NumberUtil {
 
 	/**
 	 * 无损数字解析，可能返回类型：Integer, Long, BigInteger, BigDecimal
-	 * 
+	 *
 	 * @param s
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")，则返回null，存在格式异常则返回 0
 	 */
 	public static Number numberOf(final String s) {
@@ -730,9 +738,10 @@ public final class NumberUtil {
 
 	/**
 	 * 无损数字解析，可能返回类型：Integer, Long, BigInteger, BigDecimal
-	 * 
+	 *
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 s 为空值(null)、"null"、空串("")或空白串("   ")，则返回null，存在格式异常则返回 defaultValue
 	 */
 	public static Number numberOf(final Object value, final Number defaultValue) {
@@ -756,8 +765,9 @@ public final class NumberUtil {
 
 	/**
 	 * 无损数字解析，可能返回类型：Integer, Long, BigInteger, BigDecimal
-	 * 
+	 *
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")，则返回null，存在格式异常则返回 0
 	 */
 	public static Number numberOf(final Object value) {
@@ -766,9 +776,10 @@ public final class NumberUtil {
 
 	/**
 	 * 无损数字解析，可能返回类型：Integer, Long, BigInteger, BigDecimal
-	 * 
-	 * @param value
+	 *
+	 * @param d
 	 * @param defaultValue
+	 *
 	 * @return 如果 d 为 Infinite 或 NaN，则返回 defaultValue
 	 */
 	public static Number numberOf(final double d, final Number defaultValue) {
@@ -801,8 +812,9 @@ public final class NumberUtil {
 
 	/**
 	 * 无损数字解析，可能返回类型：Integer, Long, BigInteger, BigDecimal
-	 * 
-	 * @param value
+	 *
+	 * @param d
+	 *
 	 * @return 如果 d 为 Infinite 或 NaN，则返回 0
 	 */
 	public static Number numberOf(final double d) {
@@ -811,9 +823,10 @@ public final class NumberUtil {
 
 	/**
 	 * 无损数字解析，可能返回类型：Integer, Long, BigInteger, BigDecimal
-	 * 
-	 * @param value
+	 *
+	 * @param f
 	 * @param defaultValue
+	 *
 	 * @return 如果 f 为 Infinite 或 NaN，则返回 defaultValue
 	 */
 	public static final Number numberOf(final float f, final Number defaultValue) {
@@ -846,8 +859,9 @@ public final class NumberUtil {
 
 	/**
 	 * 无损数字解析，可能返回类型：Integer, Long, BigInteger, BigDecimal
-	 * 
-	 * @param value
+	 *
+	 * @param f
+	 *
 	 * @return 如果 f 为 Infinite 或 NaN，则返回 0
 	 */
 	public static Number numberOf(final float f) {
@@ -856,9 +870,10 @@ public final class NumberUtil {
 
 	/**
 	 * 忽略前导ASCII空格。
-	 * 
+	 *
 	 * @param s
 	 * @param defaultValue
+	 *
 	 * @return
 	 */
 	public static Number firstNumberOf(final String s, final Number defaultValue) {
@@ -867,8 +882,9 @@ public final class NumberUtil {
 
 	/**
 	 * 忽略前导ASCII空格。
-	 * 
+	 *
 	 * @param s
+	 *
 	 * @return
 	 */
 	public static Number firstNumberOf(final String s) {
@@ -877,9 +893,10 @@ public final class NumberUtil {
 
 	/**
 	 * 忽略前导ASCII空格。
-	 * 
+	 *
 	 * @param s
 	 * @param decimal
+	 *
 	 * @return
 	 */
 	public static String firstNumber(final String s, final boolean decimal) {
@@ -899,9 +916,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
 	 * @param defaultValue
+	 *
 	 * @return 如果 n 为无穷(Infinite)或非数字(NaN)则返回 defaultValue
 	 */
 	public static BigDecimal toBigDecimal(Number n, BigDecimal defaultValue) {
@@ -927,8 +944,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
+	 *
 	 * @return 如果 n 为无穷(Infinite)或非数字(NaN)则返回 0
 	 */
 	public static BigDecimal toBigDecimal(Number n) {
@@ -936,10 +953,10 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
 	 * @param scale
 	 * @param defaultValue
+	 *
 	 * @return 如果 n 为无穷(Infinite)或非数字(NaN)则返回 defaultValue
 	 */
 	public static BigDecimal toBigDecimal(Number n, int scale, BigDecimal defaultValue) {
@@ -951,9 +968,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
 	 * @param scale
+	 *
 	 * @return 如果 n 为无穷(Infinite)或非数字(NaN)则返回 0
 	 */
 	public static BigDecimal toBigDecimal(Number n, int scale) {
@@ -961,9 +978,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
 	 * @param defaultValue
+	 *
 	 * @return 如果 n 为无穷(Infinite)或非数字(NaN)则返回 defaultValue
 	 */
 	public static BigInteger toBigInteger(Number n, BigInteger defaultValue) {
@@ -981,8 +998,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
+	 *
 	 * @return 如果 n 为无穷(Infinite)或非数字(NaN)则返回 0
 	 */
 	public static BigInteger toBigInteger(Number n) {
@@ -990,9 +1007,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 defaultValue
 	 */
 	public static byte byteValue(Object value, byte defaultValue) {
@@ -1013,8 +1030,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0
 	 */
 	public static byte byteValue(Object value) {
@@ -1022,9 +1039,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 defaultValue
 	 */
 	public static short shortValue(Object value, short defaultValue) {
@@ -1045,8 +1062,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0
 	 */
 	public static short shortValue(Object value) {
@@ -1054,9 +1071,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 defaultValue
 	 */
 	public static int intValue(Object value, int defaultValue) {
@@ -1075,8 +1092,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0
 	 */
 	public static int intValue(Object value) {
@@ -1084,9 +1101,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 defaultValue
 	 */
 	public static long longValue(Object value, long defaultValue) {
@@ -1107,8 +1124,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0L
 	 */
 	public static long longValue(Object value) {
@@ -1116,9 +1133,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 defaultValue
 	 */
 	public static float floatValue(Object value, float defaultValue) {
@@ -1136,8 +1153,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0.0F
 	 */
 	public static float floatValue(Object value) {
@@ -1145,9 +1162,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
 	 * @param defaultValue
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 defaultValue
 	 */
 	public static double doubleValue(Object value, double defaultValue) {
@@ -1165,8 +1182,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return 如果 value 为空值(null)、"null"、空串("")或空白串("   ")或存在格式异常则返回 0.0D
 	 */
 	public static double doubleValue(Object value) {
@@ -1174,8 +1191,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static byte[] toBytes(long n) {
@@ -1213,8 +1230,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static byte[] toBytes(int n) {
@@ -1252,8 +1269,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static byte[] toBytes(short n) {
@@ -1290,10 +1307,10 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param b
 	 * @param offset
 	 * @param len
+	 *
 	 * @return
 	 */
 	public static long toLong(byte[] b, int offset, int len) {
@@ -1315,9 +1332,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param b
 	 * @param offset
+	 *
 	 * @return
 	 */
 	public static long toLong(byte[] b, int offset) {
@@ -1325,8 +1342,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param b
+	 *
 	 * @return
 	 */
 	public static long toLong(byte[] b) {
@@ -1334,9 +1351,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param b
 	 * @param offset
+	 *
 	 * @return
 	 */
 	public static int toInt(byte[] b, int offset) {
@@ -1344,8 +1361,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param b
+	 *
 	 * @return
 	 */
 	public static int toInt(byte[] b) {
@@ -1353,9 +1370,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param b
 	 * @param offset
+	 *
 	 * @return
 	 */
 	public static short toShort(byte[] b, int offset) {
@@ -1363,8 +1380,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param b
+	 *
 	 * @return
 	 */
 	public static short toShort(byte[] b) {
@@ -1373,9 +1390,10 @@ public final class NumberUtil {
 
 	/**
 	 * @param n
-	 *            a <code>integer</code> to be converted to a string.
+	 * 		a <code>integer</code> to be converted to a string.
 	 * @param shift
 	 * @param fixedLength
+	 *
 	 * @return
 	 */
 	private static String toUnsignedString(int n, int shift, int fixedLength) {
@@ -1400,9 +1418,10 @@ public final class NumberUtil {
 
 	/**
 	 * @param n
-	 *            a <code>long</code> to be converted to a string.
+	 * 		a <code>long</code> to be converted to a string.
 	 * @param shift
 	 * @param fixedLength
+	 *
 	 * @return
 	 */
 	private static String toUnsignedString(long n, int shift, int fixedLength) {
@@ -1428,6 +1447,7 @@ public final class NumberUtil {
 	/**
 	 * @param n
 	 * @param fixedLength
+	 *
 	 * @return
 	 */
 	public static String toHexString(byte n, int fixedLength) {
@@ -1436,6 +1456,7 @@ public final class NumberUtil {
 
 	/**
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static String toHexString(byte n) {
@@ -1445,6 +1466,7 @@ public final class NumberUtil {
 	/**
 	 * @param n
 	 * @param fixedLength
+	 *
 	 * @return
 	 */
 	public static String toHexString(short n, int fixedLength) {
@@ -1453,6 +1475,7 @@ public final class NumberUtil {
 
 	/**
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static String toHexString(short n) {
@@ -1462,6 +1485,7 @@ public final class NumberUtil {
 	/**
 	 * @param n
 	 * @param fixedLength
+	 *
 	 * @return
 	 */
 	public static String toHexString(int n, int fixedLength) {
@@ -1470,6 +1494,7 @@ public final class NumberUtil {
 
 	/**
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static String toHexString(int n) {
@@ -1479,6 +1504,7 @@ public final class NumberUtil {
 	/**
 	 * @param n
 	 * @param fixedLength
+	 *
 	 * @return
 	 */
 	public static String toHexString(long n, int fixedLength) {
@@ -1487,6 +1513,7 @@ public final class NumberUtil {
 
 	/**
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static String toHexString(long n) {
@@ -1496,6 +1523,7 @@ public final class NumberUtil {
 	/**
 	 * @param n
 	 * @param fixedLength
+	 *
 	 * @return
 	 */
 	public static String toBinaryString(byte n, int fixedLength) {
@@ -1504,6 +1532,7 @@ public final class NumberUtil {
 
 	/**
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static String toBinaryString(byte n) {
@@ -1513,6 +1542,7 @@ public final class NumberUtil {
 	/**
 	 * @param n
 	 * @param fixedLength
+	 *
 	 * @return
 	 */
 	public static String toBinaryString(short n, int fixedLength) {
@@ -1521,6 +1551,7 @@ public final class NumberUtil {
 
 	/**
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static String toBinaryString(short n) {
@@ -1530,6 +1561,7 @@ public final class NumberUtil {
 	/**
 	 * @param n
 	 * @param fixedLength
+	 *
 	 * @return
 	 */
 	public static String toBinaryString(int n, int fixedLength) {
@@ -1538,6 +1570,7 @@ public final class NumberUtil {
 
 	/**
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static String toBinaryString(int n) {
@@ -1547,6 +1580,7 @@ public final class NumberUtil {
 	/**
 	 * @param n
 	 * @param fixedLength
+	 *
 	 * @return
 	 */
 	public static String toBinaryString(long n, int fixedLength) {
@@ -1555,6 +1589,7 @@ public final class NumberUtil {
 
 	/**
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static String toBinaryString(long n) {
@@ -1562,9 +1597,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
 	 * @param fixedLength
+	 *
 	 * @return
 	 */
 	public static String toUnsignedString(byte n, int fixedLength) {
@@ -1572,8 +1607,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static String toUnsignedString(byte n) {
@@ -1581,9 +1616,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
 	 * @param fixedLength
+	 *
 	 * @return
 	 */
 	public static String toUnsignedString(short n, int fixedLength) {
@@ -1591,8 +1626,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static String toUnsignedString(short n) {
@@ -1600,9 +1635,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
 	 * @param fixedLength
+	 *
 	 * @return
 	 */
 	public static String toUnsignedString(int n, int fixedLength) {
@@ -1635,8 +1670,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static String toUnsignedString(int n) {
@@ -1644,9 +1679,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
 	 * @param fixedLength
+	 *
 	 * @return
 	 */
 	public static String toUnsignedString(long n, int fixedLength) {
@@ -1679,8 +1714,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static String toUnsignedString(long n) {
@@ -1690,8 +1725,9 @@ public final class NumberUtil {
 	/**
 	 * @param n
 	 * @param blockSize
-	 *            blockSize may be (or may be an integer optionally followed by) one of following:
-	 *            KB 1000, K 1024, MB 1000*1000, M 1024*1024, and so on for G, T, P.
+	 * 		blockSize may be (or may be an integer optionally followed by) one of following:
+	 * 		KB 1000, K 1024, MB 1000*1000, M 1024*1024, and so on for G, T, P.
+	 *
 	 * @return
 	 */
 	public static String toSize(long n, String blockSize) {
@@ -1785,6 +1821,7 @@ public final class NumberUtil {
 
 	/**
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static String toSize(long n) {
@@ -1795,6 +1832,7 @@ public final class NumberUtil {
 	 * @param n
 	 * @param groupingUsed
 	 * @param percent
+	 *
 	 * @return
 	 */
 	public static String toString(Number n, boolean groupingUsed, boolean percent) {
@@ -1817,6 +1855,7 @@ public final class NumberUtil {
 	/**
 	 * @param n
 	 * @param groupingUsed
+	 *
 	 * @return
 	 */
 	public static String toString(Number n, boolean groupingUsed) {
@@ -1824,8 +1863,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
+	 *
 	 * @return
 	 */
 	public static String toString(Number n) {
@@ -1877,7 +1916,7 @@ public final class NumberUtil {
 	 * removed as if by the {@link String#trim} method; that is, both ASCII space and control
 	 * characters are removed. The rest of <code>s</code> should constitute a <i>FloatValue</i> as
 	 * described by the lexical syntax rules:
-	 * 
+	 * <p>
 	 * <blockquote>
 	 * <dl>
 	 * <dt><i>FloatValue:</i>
@@ -1887,16 +1926,16 @@ public final class NumberUtil {
 	 * <dd><i>Sign<sub>opt</sub> HexFloatingPointLiteral</i>
 	 * <dd><i>SignedInteger</i>
 	 * </dl>
-	 * 
 	 * <p>
-	 * 
+	 * <p>
+	 * <p>
 	 * <dl>
 	 * <dt><i>HexFloatingPointLiteral</i>:
 	 * <dd><i>HexSignificand BinaryExponent FloatTypeSuffix<sub>opt</sub></i>
 	 * </dl>
-	 * 
 	 * <p>
-	 * 
+	 * <p>
+	 * <p>
 	 * <dl>
 	 * <dt><i>HexSignificand:</i>
 	 * <dd><i>HexNumeral</i>
@@ -1904,24 +1943,24 @@ public final class NumberUtil {
 	 * <dd><code>0x</code> <i>HexDigits<sub>opt</sub> </i><code>.</code><i> HexDigits</i>
 	 * <dd><code>0X</code><i> HexDigits<sub>opt</sub> </i><code>.</code> <i>HexDigits</i>
 	 * </dl>
-	 * 
 	 * <p>
-	 * 
+	 * <p>
+	 * <p>
 	 * <dl>
 	 * <dt><i>BinaryExponent:</i>
 	 * <dd><i>BinaryExponentIndicator SignedInteger</i>
 	 * </dl>
-	 * 
 	 * <p>
-	 * 
+	 * <p>
+	 * <p>
 	 * <dl>
 	 * <dt><i>BinaryExponentIndicator:</i>
 	 * <dd><code>p</code>
 	 * <dd><code>P</code>
 	 * </dl>
-	 * 
+	 * <p>
 	 * </blockquote>
-	 * 
+	 * <p>
 	 * where <i>Sign</i>, <i>FloatingPointLiteral</i>, <i>HexNumeral</i>, <i>HexDigits</i>,
 	 * <i>SignedInteger</i> and <i>FloatTypeSuffix</i> are as defined in the lexical structure
 	 * sections of the of the <a href="http://java.sun.com/docs/books/jls/html/">Java Language
@@ -1933,11 +1972,11 @@ public final class NumberUtil {
 	 * <code>double</code> by the usual round-to-nearest rule of IEEE 754 floating-point arithmetic,
 	 * which includes preserving the sign of a zero value. Finally, a <code>Double</code> object
 	 * representing this <code>double</code> value is returned.
-	 * 
+	 * <p>
 	 * <p>
 	 * To interpret localized string representations of a floating-point value, use subclasses of
-	 * {@link java.text.NumberFormat}.
-	 * 
+	 * {@link NumberFormat}.
+	 * <p>
 	 * <p>
 	 * Note that trailing format specifiers, specifiers that determine the type of a floating-point
 	 * literal ( <code>1.0f</code> is a <code>float</code> value; <code>1.0d</code> is a
@@ -1950,9 +1989,10 @@ public final class NumberUtil {
 	 * <code>0.10000000149011612</code>; the <code>float</code> literal <code>0.1f</code> represents
 	 * a different numerical value than the <code>double</code> literal <code>0.1</code>. (The
 	 * numerical value 0.1 cannot be exactly represented in a binary floating-point number.)
-	 * 
+	 *
 	 * @param s
-	 *            the string to be checked.
+	 * 		the string to be checked.
+	 *
 	 * @return
 	 */
 	public static boolean isFloatValue(String s) {
@@ -1965,7 +2005,7 @@ public final class NumberUtil {
 				// .
 				final String Exp = "[eE][+-]?" + Digits;
 				final String fpRegex = ("[\\x00-\\x20]*" + // Optional leading
-															// "whitespace"
+						// "whitespace"
 						"[+-]?(" + // Optional sign character
 						"NaN|" + // "NaN" string
 						"Infinity|" + // "Infinity" string
@@ -2004,8 +2044,8 @@ public final class NumberUtil {
 						"(0[xX]" + HexDigits + "?(\\.)" + HexDigits + ")" +
 
 						")[pP][+-]?" + Digits + "))" + "[fFdD]?))" + "[\\x00-\\x20]*");// Optional
-																						// trailing
-																						// "whitespace"
+				// trailing
+				// "whitespace"
 				fp = Pattern.compile(fpRegex);
 				floatPattern = fp;
 			}
@@ -2014,8 +2054,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return
 	 */
 	public static boolean isNaN(Object value) {
@@ -2029,8 +2069,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return
 	 */
 	public static boolean isInfinite(Object value) {
@@ -2044,8 +2084,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param value
+	 *
 	 * @return
 	 */
 	public static boolean isInfiniteOrNaN(Object value) {
@@ -2061,12 +2101,35 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
+	 * 判断是否为正整数，一般用于数据库ID判断
+	 *
+	 * @param value
+	 *
+	 * @return
+	 */
+	public static boolean isPositiveInteger(String value) {
+		int len;
+		if (value == null || (len = value.length()) > 10) {
+			return false;
+		}
+		int d = len - 10;
+		char c;
+		for (int i = 0; i < len; i++) {
+			if ((c = value.charAt(i)) > '9' || c < '0' || (d < 0 ? false : (d = c - MAX_INT_ARRAY[i]) > 0)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * @param source
 	 * @param decimal
 	 * @param ignoreSpace
-	 * @see #indexOfNonDigit(String, boolean, int)
+	 *
 	 * @return
+	 *
+	 * @see #indexOfNonDigit(String, boolean, int)
 	 */
 	public static boolean startsWithDigit(String source, boolean decimal, boolean ignoreSpace) {
 		int len;
@@ -2088,7 +2151,7 @@ public final class NumberUtil {
 				} else if (ch == '-' || ch == '+' && decimal) {
 					signIndex = i;
 				} else if (!ignoreSpace || ch != ' ') { // only, NOT include
-														// \t\r\n etc.
+					// \t\r\n etc.
 					return false; // 非空格或者不允许空格
 				}
 			}
@@ -2097,12 +2160,13 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param source
 	 * @param decimal
 	 * @param offset
-	 * @see #indexOfNonDigit(String, boolean, int)
+	 *
 	 * @return
+	 *
+	 * @see #indexOfNonDigit(String, boolean, int)
 	 */
 	public static int indexOfDigit(String source, boolean decimal, int offset) {
 		int len;
@@ -2131,11 +2195,12 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param source
 	 * @param decimal
-	 * @see #indexOfDigit(String, boolean, int)
+	 *
 	 * @return
+	 *
+	 * @see #indexOfDigit(String, boolean, int)
 	 */
 	public static int indexOfDigit(String source, boolean decimal) {
 		return indexOfDigit(source, decimal, 0);
@@ -2155,11 +2220,12 @@ public final class NumberUtil {
 	 * (Integer.MIN_VALUE+1) 和 Integer.MAX_VALUE（包括）之间。
 	 * <p>
 	 * Double, Float: Java规则参照 {@link #isFloatValue(String)} ，这里按兼容BigDecimal规则处理。
-	 * 
+	 *
 	 * @param source
 	 * @param decimal
 	 * @param exponent
 	 * @param offset
+	 *
 	 * @return
 	 */
 	public static int indexOfNonDigit(String source, boolean decimal, boolean exponent, int offset) {
@@ -2232,10 +2298,11 @@ public final class NumberUtil {
 	 * (Integer.MIN_VALUE+1) 和 Integer.MAX_VALUE（包括）之间。
 	 * <p>
 	 * Double, Float: Java规则参照 {@link #isFloatValue(String)} ，这里按兼容BigDecimal规则处理。
-	 * 
+	 *
 	 * @param source
 	 * @param decimal
 	 * @param offset
+	 *
 	 * @return
 	 */
 	public static int indexOfNonDigit(String source, boolean decimal, int offset) {
@@ -2243,22 +2310,23 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param source
 	 * @param decimal
-	 * @see #indexOfNonDigit(String, boolean, int)
+	 *
 	 * @return
+	 *
+	 * @see #indexOfNonDigit(String, boolean, int)
 	 */
 	public static int indexOfNonDigit(String source, boolean decimal) {
 		return indexOfNonDigit(source, decimal, 0);
 	}
 
 	/**
-	 * 
 	 * @param n1
-	 *            不允许为空值(null)
+	 * 		不允许为空值(null)
 	 * @param n2
-	 *            不允许为空值(null)
+	 * 		不允许为空值(null)
+	 *
 	 * @return 若 n1 小于 n2 则返回 LESS(-1)； 若 n1 等于 n2 则返回 EQUAL(0)； 若 n1 大于 n2 则返回 GREATER(1)；
 	 */
 	public static int compare(Number n1, Number n2) {
@@ -2311,9 +2379,10 @@ public final class NumberUtil {
 	 * add(n1, n2) 方法与 sum(n1, n2) 方法不同之处在于 sum 方法相加时忽略空值(null)
 	 * <p>
 	 * TODO 尚未检查两数值相加之后是否溢出
-	 * 
+	 *
 	 * @param n1
 	 * @param n2
+	 *
 	 * @return 若其中有一个参数是空值(null)，则直接返回空值(null)
 	 */
 	public static Number add(Number n1, Number n2) {
@@ -2367,9 +2436,10 @@ public final class NumberUtil {
 
 	/**
 	 * add(n1, o2) 方法与 sum(n1, o2) 方法不同之处在于 sum 方法相加时忽略空值(null)
-	 * 
+	 *
 	 * @param n1
 	 * @param o2
+	 *
 	 * @return 若其中有一个参数是空值(null)，则直接返回空值(null)
 	 */
 	public static Number add(Number n1, Object o2) {
@@ -2380,9 +2450,10 @@ public final class NumberUtil {
 	 * sum(n1, n2) 方法与 add(n1, n2) 方法不同之处在于 sum 方法相加时忽略空值(null)
 	 * <p>
 	 * TODO 尚未检查两数值相加之后是否溢出
-	 * 
+	 *
 	 * @param n1
 	 * @param n2
+	 *
 	 * @return 若其中有一个参数是空值(null)，则直接返回直接返回另外一个参数值，可能也是空值(null)
 	 */
 	public static Number sum(Number n1, Number n2) {
@@ -2397,9 +2468,10 @@ public final class NumberUtil {
 
 	/**
 	 * sum(n1, o2) 方法与 add(n1, o2) 方法不同之处在于 sum 方法相加时忽略空值(null)
-	 * 
+	 *
 	 * @param n1
 	 * @param o2
+	 *
 	 * @return 若其中有一个参数是空值(null)，则直接返回直接返回另外一个参数值，可能也是空值(null)
 	 */
 	public static Number sum(Number n1, Object o2) {
@@ -2408,9 +2480,10 @@ public final class NumberUtil {
 
 	/**
 	 * TODO 尚未检查两数值相减之后是否溢出
-	 * 
+	 *
 	 * @param n1
 	 * @param n2
+	 *
 	 * @return 若其中有一个参数是空值(null)，则直接返回空值(null)
 	 */
 	public static Number subtract(Number n1, Number n2) {
@@ -2463,9 +2536,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n1
 	 * @param o2
+	 *
 	 * @return 若其中有一个参数是空值(null)，则直接返回空值(null)
 	 */
 	public static Number subtract(Number n1, Object o2) {
@@ -2473,8 +2546,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
+	 *
 	 * @return 若参数是空值(null)，则直接返回空值(null)
 	 */
 	public static Number negate(Number n) {
@@ -2503,8 +2576,8 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n
+	 *
 	 * @return 若参数是空值(null)，则直接返回空值(null)
 	 */
 	public static Number abs(Number n) {
@@ -2559,9 +2632,10 @@ public final class NumberUtil {
 
 	/**
 	 * TODO 尚未检查两数值相乘之后是否溢出
-	 * 
+	 *
 	 * @param n1
 	 * @param n2
+	 *
 	 * @return 若其中有一个参数是空值(null)，则直接返回空值(null)
 	 */
 	public static Number multiply(Number n1, Number n2) {
@@ -2614,9 +2688,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n1
 	 * @param o2
+	 *
 	 * @return 若其中有一个参数是空值(null)，则直接返回空值(null)
 	 */
 	public static Number multiply(Number n1, Object o2) {
@@ -2624,9 +2698,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param bd1
 	 * @param bd2
+	 *
 	 * @return
 	 */
 	public static BigDecimal divide(BigDecimal bd1, BigDecimal bd2) {
@@ -2640,9 +2714,10 @@ public final class NumberUtil {
 
 	/**
 	 * TODO 尚未检查两数值相除之后是否溢出
-	 * 
+	 *
 	 * @param n1
 	 * @param n2
+	 *
 	 * @return 若其中有一个参数是空值(null)，则直接返回空值(null)
 	 */
 	public static Number divide(Number n1, Number n2) {
@@ -2695,9 +2770,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n1
 	 * @param o2
+	 *
 	 * @return 若其中有一个参数是空值(null)，则直接返回空值(null)
 	 */
 	public static Number divide(Number n1, Object o2) {
@@ -2705,9 +2780,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param bd1
 	 * @param bd2
+	 *
 	 * @return
 	 */
 	public static BigDecimal mod(BigDecimal bd1, BigDecimal bd2) {
@@ -2719,9 +2794,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n1
 	 * @param n2
+	 *
 	 * @return 若其中有一个参数是空值(null)，则直接返回空值(null)
 	 */
 	public static Number mod(Number n1, Number n2) {
@@ -2774,9 +2849,9 @@ public final class NumberUtil {
 	}
 
 	/**
-	 * 
 	 * @param n1
 	 * @param o2
+	 *
 	 * @return 若其中有一个参数是空值(null)，则直接返回空值(null)
 	 */
 	public static Number mod(Number n1, Object o2) {
@@ -2786,6 +2861,7 @@ public final class NumberUtil {
 	/**
 	 * @param n
 	 * @param scale
+	 *
 	 * @return
 	 */
 	public static Number round(Number n, int scale) {
