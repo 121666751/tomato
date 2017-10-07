@@ -5,6 +5,8 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
+ * 该锁类似于利用String.intern()但更具扩展性和可读性，以及避免常量池溢出
+ *
  * @author caibo
  * @version $Id$
  * @since 2017/10/7 下午9:31
