@@ -1,7 +1,3 @@
-/**
- * Copyright(C) 2012 Fugle Technology Co. Ltd. All rights reserved.
- * 
- */
 package com.tomato.util;
 
 import java.util.Calendar;

@@ -1,6 +1,3 @@
-/**
- * Copyright(C) 2014 Fugle Technology Co. Ltd. All rights reserved.
- */
 package com.tomato.util;
 
 import java.io.File;
@@ -148,7 +145,7 @@ public final class ClassUtil {
 	}
 
 	/**
-	 * 清除动态代理代码部分，如清除“com.ifugle.Test$$EnhancerByCGLIB$$...”为“com.ifugle.Test”
+	 * 清除动态代理代码部分，如清除“com.charpty.Test$$EnhancerByCGLIB$$...”为“com.charpty.Test”
 	 *
 	 *
 	 * @param name
@@ -164,7 +161,7 @@ public final class ClassUtil {
 	}
 
 	/**
-	 * 清除动态代理代码部分，如清除“com.ifugle.Test$$EnhancerByCGLIB$$...”为“com.ifugle.Test”
+	 * 清除动态代理代码部分，如清除“com.charpty.Test$$EnhancerByCGLIB$$...”为“com.charpty.Test”
 	 *
 	 * @param type
 	 *
@@ -175,7 +172,7 @@ public final class ClassUtil {
 	}
 
 	/**
-	 * 清除动态代理代码部分，如清除“com.ifugle.Test$$EnhancerByCGLIB$$...”为“com.ifugle.Test”
+	 * 清除动态代理代码部分，如清除“com.charpty.Test$$EnhancerByCGLIB$$...”为“com.charpty.Test”
 	 *
 	 * @param bean
 	 *
@@ -189,7 +186,7 @@ public final class ClassUtil {
 	}
 
 	/**
-	 * 清除动态代理代码部分，如清除“com.ifugle.Test$$EnhancerByCGLIB$$...”为“com.ifugle.Test”
+	 * 清除动态代理代码部分，如清除“com.charpty.Test$$EnhancerByCGLIB$$...”为“com.charpty.Test”
 	 *
 	 * @param type
 	 *
@@ -205,7 +202,7 @@ public final class ClassUtil {
 	}
 
 	/**
-	 * 清除动态代理代码部分，如清除“com.ifugle.Test$$EnhancerByCGLIB$$...”为“com.ifugle.Test”
+	 * 清除动态代理代码部分，如清除“com.charpty.Test$$EnhancerByCGLIB$$...”为“com.charpty.Test”
 	 *
 	 * @param bean
 	 *

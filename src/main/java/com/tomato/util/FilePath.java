@@ -1,7 +1,3 @@
-/**
- * Copyright(C) 2010 Fugle Technology Co. Ltd. All rights reserved.
- * 
- */
 package com.tomato.util;
 
 /**

@@ -30,7 +30,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#isCaseInsensitive()
+	 * @see com.charpty.util.StringMap#isCaseInsensitive()
 	 */
 	@Override
 	public boolean isCaseInsensitive() {
@@ -38,7 +38,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#setCaseInsensitive(boolean)
+	 * @see com.charpty.util.StringMap#setCaseInsensitive(boolean)
 	 */
 	@Override
 	public void setCaseInsensitive(boolean caseInsensitive) {
@@ -46,7 +46,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#containsKey(java.lang.String)
+	 * @see com.charpty.util.StringMap#containsKey(java.lang.String)
 	 */
 	@Override
 	public boolean containsKey(String key) {
@@ -70,7 +70,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#remove(java.lang.String)
+	 * @see com.charpty.util.StringMap#remove(java.lang.String)
 	 */
 	@Override
 	public V remove(String key) {
@@ -94,7 +94,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#get(java.lang.String)
+	 * @see com.charpty.util.StringMap#get(java.lang.String)
 	 */
 	@Override
 	public V get(String key) {
@@ -118,7 +118,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#put(java.lang.String, V)
+	 * @see com.charpty.util.StringMap#put(java.lang.String, V)
 	 */
 	@Override
 	public V put(String key, V value) {
@@ -130,7 +130,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#getByte(java.lang.String, java.lang.Byte)
+	 * @see com.charpty.util.StringMap#getByte(java.lang.String, java.lang.Byte)
 	 */
 	@Override
 	public Byte getByte(String key, Byte defaultValue) {
@@ -138,7 +138,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#getByte(java.lang.String)
+	 * @see com.charpty.util.StringMap#getByte(java.lang.String)
 	 */
 	@Override
 	public Byte getByte(String key) {
@@ -146,7 +146,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#getShort(java.lang.String, java.lang.Short)
+	 * @see com.charpty.util.StringMap#getShort(java.lang.String, java.lang.Short)
 	 */
 	@Override
 	public Short getShort(String key, Short defaultValue) {
@@ -154,7 +154,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#getShort(java.lang.String)
+	 * @see com.charpty.util.StringMap#getShort(java.lang.String)
 	 */
 	@Override
 	public Short getShort(String key) {
@@ -162,7 +162,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#getInteger(java.lang.String, java.lang.Integer)
+	 * @see com.charpty.util.StringMap#getInteger(java.lang.String, java.lang.Integer)
 	 */
 	@Override
 	public Integer getInteger(String key, Integer defaultValue) {
@@ -170,7 +170,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#getInteger(java.lang.String)
+	 * @see com.charpty.util.StringMap#getInteger(java.lang.String)
 	 */
 	@Override
 	public Integer getInteger(String key) {
@@ -178,7 +178,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#getInt(java.lang.String, int)
+	 * @see com.charpty.util.StringMap#getInt(java.lang.String, int)
 	 */
 	@Override
 	public int getInt(String key, int defaultValue) {
@@ -190,7 +190,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#getInt(java.lang.String)
+	 * @see com.charpty.util.StringMap#getInt(java.lang.String)
 	 */
 	@Override
 	public int getInt(String key) {
@@ -202,7 +202,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#getString(java.lang.String, java.lang.String)
+	 * @see com.charpty.util.StringMap#getString(java.lang.String, java.lang.String)
 	 */
 	@Override
 	public String getString(String key, String defaultValue) {
@@ -217,7 +217,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#getString(java.lang.String)
+	 * @see com.charpty.util.StringMap#getString(java.lang.String)
 	 */
 	@Override
 	public String getString(String key) {
@@ -225,7 +225,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#getBoolean(java.lang.String, boolean)
+	 * @see com.charpty.util.StringMap#getBoolean(java.lang.String, boolean)
 	 */
 	@Override
 	public boolean getBoolean(String key, boolean defaultValue) {
@@ -233,7 +233,7 @@ public class StringLinkedHashMap<V> extends LinkedHashMap<String, V> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see com.ifugle.util.StringMap#getBoolean(java.lang.String)
+	 * @see com.charpty.util.StringMap#getBoolean(java.lang.String)
 	 */
 	@Override
 	public boolean getBoolean(String key) {

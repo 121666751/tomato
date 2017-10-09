@@ -1,7 +1,3 @@
-/**
- * Copyright(C) 2017 Hangzhou Fugle Technology Co., Ltd. All rights reserved.
- *
- */
 package com.tomato.util;
 
 import sun.misc.BASE64Decoder;
