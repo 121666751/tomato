@@ -68,8 +68,9 @@ public final class ClassUtil {
 	/**
 	 * 在当前执行类堆栈中获取调用者之前 callerOffset 个的调用类
 	 *
-	 * @param callerOffset 0 based caller offset, indexes into the current method call context with a given
-	 * offset.
+	 * @param callerOffset
+	 * 		0 based caller offset, indexes into the current method call context with a given
+	 * 		offset.
 	 *
 	 * @return
 	 */
@@ -110,9 +111,6 @@ public final class ClassUtil {
 	 * @param caller
 	 *
 	 * @return
-	 *
-	 * @author (C) <a href="http://www.javaworld.com/columns/jw-qna-index.shtml">Vlad Roubtsov</a>,
-	 * 2003
 	 */
 	public static ClassLoader getClassLoader(final Class<?> caller) {
 		final ClassLoader callerLoader = caller.getClassLoader();
@@ -144,9 +142,6 @@ public final class ClassUtil {
 
 	/**
 	 * @return
-	 *
-	 * @author (C) <a href="http://www.javaworld.com/columns/jw-qna-index.shtml">Vlad Roubtsov</a>,
-	 * 2003
 	 */
 	public static ClassLoader getClassLoader() {
 		return getClassLoader(getCallerClass(1));
@@ -155,11 +150,12 @@ public final class ClassUtil {
 	/**
 	 * 清除动态代理代码部分，如清除“com.ifugle.Test$$EnhancerByCGLIB$$...”为“com.ifugle.Test”
 	 *
+	 *
 	 * @param name
 	 *
 	 * @return
 	 */
-	private static String Clean$$Name(String name) {
+	public static String Clean$$Name(String name) {
 		int index = name.lastIndexOf('$');
 		if (index > 0 && name.charAt(index - 1) == '$') {
 			name = ENHANCER_BY_CGLIB.matcher(name).replaceAll("");
@@ -249,7 +245,8 @@ public final class ClassUtil {
 
 	/**
 	 * @param className
-	 * @param loader class loader from which the class must be loaded
+	 * @param loader
+	 * 		class loader from which the class must be loaded
 	 *
 	 * @return 永远不会返回null
 	 *
@@ -741,7 +738,8 @@ public final class ClassUtil {
 	}
 
 	/**
-	 * @param field a static field
+	 * @param field
+	 * 		a static field
 	 *
 	 * @return
 	 *
@@ -769,7 +767,8 @@ public final class ClassUtil {
 
 	/**
 	 * @param type
-	 * @param fieldName a static field
+	 * @param fieldName
+	 * 		a static field
 	 *
 	 * @return
 	 *
@@ -782,7 +781,8 @@ public final class ClassUtil {
 	}
 
 	/**
-	 * @param field a static field
+	 * @param field
+	 * 		a static field
 	 * @param value
 	 *
 	 * @see Class#getField
@@ -811,7 +811,8 @@ public final class ClassUtil {
 
 	/**
 	 * @param type
-	 * @param fieldName a static field
+	 * @param fieldName
+	 * 		a static field
 	 * @param value
 	 *
 	 * @see Class#getField
