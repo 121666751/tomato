@@ -1,5 +1,6 @@
 package com.tomato.util.primitive;
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -23,7 +24,17 @@ public class JdkProxyTest extends TestCase {
 		System.out.println(name);
 	}
 
-	public interface ProxyInterface {
+	@Test
+	public void testProxySerialization() {
+		// TODO 明天测试下JDK原生代理的序列化支持
+		// 如果可以序列化并传递给其它系统，其它系统也能反序列化，岂不就是大漏洞？
+	}
+
+	@Test
+	public void testRMIProxySerialization() {
+	}
+
+	public interface ProxyInterface extends Serializable {
 
 		public String test();
 
