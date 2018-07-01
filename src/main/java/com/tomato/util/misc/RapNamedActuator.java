@@ -11,17 +11,17 @@ import java.io.Serializable;
  */
 public interface RapNamedActuator extends Serializable {
 
-	/**
-	 * 执行器名称，唯一标识
-	 *
-	 * @return
-	 */
-	String getName();
+    /**
+     * 执行器名称，唯一标识
+     *
+     * @return
+     */
+    String getName();
 
-	/**
-	 * 执行器顺序，越小优先级越高
-	 *
-	 * @return
-	 */
-	int order();
+    /**
+     * 执行器顺序，越小优先级越高
+     *
+     * @return
+     */
+    int order();
 }
