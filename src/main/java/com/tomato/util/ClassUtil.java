@@ -291,13 +291,23 @@ public final class ClassUtil {
      *
      * @return
      */
-    public static boolean isPresent(String className, ClassLoader loader) {
+    public static boolean isPresent(String className, boolean initialize, ClassLoader loader) {
         try {
-            Class.forName(className, true, loader);
+            Class.forName(className, initialize, loader);
             return true;
         } catch (Throwable ignore) {
             return false;
         }
+    }
+
+    /**
+     * @param className
+     * @param loader
+     *
+     * @return
+     */
+    public static boolean isPresent(String className, ClassLoader loader) {
+        return isPresent(className, true, loader);
     }
 
     /**
