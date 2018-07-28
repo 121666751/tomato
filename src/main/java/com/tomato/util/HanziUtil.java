@@ -58,15 +58,19 @@ public final class HanziUtil {
     }
 
     /**
-     * GB2312萃取代号(方括弧和花括弧全部替换为括弧，剔除空白字符，字母小写转换为大写)，返回转换后长度
+     * GB2312萃取代号(方括弧和花括弧全部替换为括弧，剔除空白字符和'-'，字母小写转换为大写)
      *
      * @param source
      * @param allowLeadingZeros
      *         是否允许数字前导0
+     * @param convertBraces
+     *         是否需要方括弧和花括弧全部替换为括弧
+     * @param lowerToUpper
+     *         是否需要字母小写转换为大写
      *
      * @return
      */
-    public static String cleanCode(String source, boolean allowLeadingZeros) {
+    public static String cleanCode(String source, boolean allowLeadingZeros, boolean convertBraces, boolean lowerToUpper) {
         source = symbol2Ascii(source);
         if (source.isEmpty()) {
             return "";
@@ -99,11 +103,23 @@ public final class HanziUtil {
             }
 
             if (ch >= 'a' && ch <= 'z') {
-                sb.append((char) (ch + ('A' - 'a')));
+                if (lowerToUpper) {
+                    sb.append((char) (ch + ('A' - 'a')));
+                } else {
+                    sb.append(ch);
+                }
             } else if (ch == '[' || ch == '{') {
-                sb.append('(');
+                if (convertBraces) {
+                    sb.append('(');
+                } else {
+                    sb.append(ch);
+                }
             } else if (ch == ']' || ch == '}') {
-                sb.append(')');
+                if (convertBraces) {
+                    sb.append(')');
+                } else {
+                    sb.append(ch);
+                }
             } else if (Character.isWhitespace(ch) || ch == '-') {
                 continue;
             } else {
@@ -114,14 +130,27 @@ public final class HanziUtil {
     }
 
     /**
-     * GB2312萃取代号(方括弧和花括弧全部替换为括弧，剔除空白字符，字母小写转换为大写，数字剔除前导0)，返回转换后长度
+     * GB2312萃取代号(方括弧和花括弧全部替换为括弧，剔除空白字符和'-'，字母小写转换为大写)
+     *
+     * @param source
+     * @param allowLeadingZeros
+     *         是否允许数字前导0
+     *
+     * @return
+     */
+    public static String cleanCode(String source, boolean allowLeadingZeros) {
+        return cleanCode(source, false, true, true);
+    }
+
+    /**
+     * GB2312萃取代号(方括弧和花括弧全部替换为括弧，剔除空白字符和'-'，字母小写转换为大写，数字剔除前导0)
      *
      * @param source
      *
      * @return
      */
     public static String cleanCode(String source) {
-        return cleanCode(source, false);
+        return cleanCode(source, false, true, true);
     }
 
     private static void initSymbol() {

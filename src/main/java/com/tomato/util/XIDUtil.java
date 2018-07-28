@@ -1,8 +1,11 @@
 package com.tomato.util;
 
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.tomato.util.checkdigits.CheckDigit;
+import com.tomato.util.checkdigits.CheckGB11714Mod11_2;
+import com.tomato.util.checkdigits.CheckGB32100Mod31_3;
 
 public final class XIDUtil {
 
@@ -18,16 +21,14 @@ public final class XIDUtil {
     private static final String KEY_NSRSBH_ID = "NsrsbhId";
     private static final String KEY_NSRMC_ID = "NsrmcId";
 
-    public static final int MAX_NSRSBH_15 = 15;
-    public static final int MAX_NSRSBH_18 = 18;
-    private static final HashMap<Character, Integer> NSRSBH_CODE_15 = new HashMap<>(64);
-    private static final HashMap<Character, Integer> NSRSBH_CODE_18 = new HashMap<>(64);
-    private static final int[] POW_3_ARR = { 1, 3, 9, 27, 81, 243, 729, 2187, 6561, 19683, 59049, 177147, 531441, 1594323, 4782969, 14348907, 43046721 };
-    private static final int[] W_15 = { 0, 0, 0, 0, 0, 0, 3, 7, 9, 10, 5, 8, 4, 2 };
+    private static final int MIN_NSRSBH_9 = 9;
+    private static final int MAX_NSRSBH_15 = 15;
+    private static final int MAX_NSRSBH_18 = 18;
+    private static final CheckDigit ZZJGDM_CHECKER = new CheckGB11714Mod11_2();
+    private static final CheckDigit SHXYDM_CHECKER = new CheckGB32100Mod31_3();
     private static Object PYJC_TRANSLATOR;
 
     static {
-        initNsrsbhCode();
         initICU();
     }
 
@@ -200,6 +201,36 @@ public final class XIDUtil {
     }
 
     /**
+     * @param pin
+     *         公民身份号码
+     * @param allowFullWidth
+     *         允许全角字符转换为半角
+     *
+     * @return
+     */
+    public static boolean isPin(String pin, boolean allowFullWidth) {
+        if (null != pin && pin.length() >= PINUtil.MAX_PRCPIN_G1) {
+            boolean result = PINUtil.verify(pin);
+            if (!result && allowFullWidth) {
+                pin = HanziUtil.cleanCode(pin, true, false, true);
+                result = PINUtil.verify(pin);
+            }
+            return result;
+        }
+        return false;
+    }
+
+    /**
+     * @param pin
+     *         公民身份号码
+     *
+     * @return
+     */
+    public static boolean isPin(String pin) {
+        return isPin(pin, false);
+    }
+
+    /**
      * 清洗及升级公民身份号码（居民身份证号码）
      *
      * @param pin
@@ -334,126 +365,124 @@ public final class XIDUtil {
     }
 
     /**
-     * Is nsrsbh boolean.
+     * @param shxydm
+     *         社会信用代码，兼容以组织机构代码为基础的 15 位号码
      *
-     * @param nsrsbh
-     *         the nsrsbh
-     *
-     * @return the boolean
+     * @return
      */
-    public static boolean isNsrsbh(String nsrsbh) {
-        if (nsrsbh == null || !nsrsbh.equals(getNsrsbh(nsrsbh))) {
-            return false;
-        }
-        if (nsrsbh.length() == MAX_NSRSBH_18) {
-            return isNsrsbh18(nsrsbh);
-        } else if (nsrsbh.length() == MAX_NSRSBH_15) {
-            return isNsrsbh15(nsrsbh);
+    public static boolean isShxydm(String shxydm) {
+        int len;
+        if (null != shxydm && ((len = shxydm.length()) >= MAX_NSRSBH_15) && StringUtil.isAsciiAlphanumeric(shxydm, true, true)) {
+            boolean result;
+            try {
+                if (len == MAX_NSRSBH_18) {
+                    result = SHXYDM_CHECKER.verify(shxydm);
+                } else if (len == MAX_NSRSBH_15) {
+                    result = ZZJGDM_CHECKER.verify(shxydm.substring(6));
+                } else {
+                    result = false;
+                }
+            } catch (Exception ignore) {
+                result = false;
+            }
+            return result;
         }
         return false;
     }
 
-    private static boolean isNsrsbh15(String nsrsbh) {
-        int mod = 0;
-        Integer c15, c;
-        char[] charArr = nsrsbh.toCharArray();
-        if ((c15 = NSRSBH_CODE_15.get(charArr[14])) == null) {
-            return false;
-        }
-        for (int i = 6; i < 14; i++) {
-            if ((c = NSRSBH_CODE_15.get(charArr[i])) == null) {
-                return false;
+    /**
+     * @param nsrsbh
+     *         纳税人识别号
+     * @param allowFullWidth
+     *         允许全角字符转换为半角
+     *
+     * @return
+     */
+    public static boolean isNsrsbh(String nsrsbh, boolean allowFullWidth) {
+        if (null != nsrsbh && (nsrsbh.length() >= MIN_NSRSBH_9)) {
+            boolean result = isNsrsbh(nsrsbh);
+            if (!result && allowFullWidth) {
+                nsrsbh = HanziUtil.cleanCode(nsrsbh, true, false, true);
+                result = isNsrsbh(nsrsbh);
             }
-            mod += (W_15[i] * c);
+            return result;
         }
-        return (mod = mod % 11) == 1 ? (c15 == 33) : (mod == 0 ? c15 == 0 : (c15 == 11 - mod));
+        return false;
     }
 
-    private static boolean isNsrsbh18(String nsrsbh) {
-        int mod = 0;
-        Integer c18, c;
-        char[] arr = nsrsbh.toCharArray();
-        if ((c18 = NSRSBH_CODE_18.get(arr[17])) == null) {
-            return false;
-        }
-        for (int i = 0; i < 17; i++) {
-            if ((c = NSRSBH_CODE_18.get(arr[i])) == null) {
-                return false;
+    /**
+     * 校验是否为纳税人识别号，纳税人识别号可能是社会信用代码、公民身份号码、回乡证、通行证和护照等。
+     *
+     * @param nsrsbh
+     *         调用者应保证该纳税人识别号是干净的（不应含有空格、特殊符号等）否者一律认为无效
+     *
+     * @return
+     */
+    public static boolean isNsrsbh(String nsrsbh) {
+        int len;
+        if (null != nsrsbh && ((len = nsrsbh.length()) >= MIN_NSRSBH_9) && StringUtil.isAsciiAlphanumeric(nsrsbh, true, false)) {
+            // 办理税务登记纳税人 或 自然人登记纳税人
+            boolean result = isShxydm(nsrsbh) || isPin(nsrsbh);
+            if (!result) {
+                /**
+                 * 税总发[2013]41号 国家税务总局关于发布纳税人识别号代码标准的通知 <br/>
+                 * SW 5-2013 纳税人识别号代码标准
+                 */
+                char ch = nsrsbh.charAt(0);
+                switch (ch) {
+                case 'L':
+                    /**
+                     * 临时登记纳税人（L）：以组织机构代码证、居民身份证、回乡证、通行证、护照等为有效身份证明的临时纳税的纳税人，其纳税人识别号由“L” “身份证件号码”组成。
+                     */
+                    result = (len >= (1 + 8));
+                    break;
+                case 'F':
+                    /**
+                     * 临时登记纳税人（F）：无常设机构的非居民企业的纳税人识别号由“F” “操作员所在税务机关的6位行政区划码” “3位纳税人居民身份所在国家或地区代码”
+                     * “5位顺序码”组成。
+                     */
+                    result = (len >= (1 + 6 + 3 + 5));
+                    break;
+                case 'C':
+                    /**
+                     * 自然人登记纳税人（C）：以中国护照为有效身份证明的自然人，其纳税人识别号由“C” “4位年份码” “156” “9位顺序号” “1位校验码”组成。
+                     */
+                case 'W':
+                    /**
+                     * 自然人登记纳税人（W）：以外国护照为有效身份证明的自然人，其纳税人识别号由“W” “4位年份码” “3位国籍或地区数字码” “9位顺序号”
+                     * “1位校验码”组成。
+                     */
+                    result = (len >= (1 + 4 + 3 + 9 + 1));
+                    break;
+                case 'J':
+                    /**
+                     * 自然人登记纳税人（J）： 以军官证、士兵证为有效身份证明的自然人，其纳税人识别号由“J” 行政区划码 8位顺序码。
+                     */
+                    result = (len >= (1 + 8));
+                    break;
+                case 'H': // 香港
+                case 'M': // 澳门
+                case 'T': // 台湾
+                    /**
+                     * 自然人登记纳税人（H/M/T）：以港澳居民来往内地通行证、台湾居民来往大陆通行证等为有效身份证明的港、澳、台地区自然人，其纳税人识别号由“
+                     * 所在地区拉丁字母码”首位字母 “4位年份码（登记年份）” “3位国籍或地区数字码” “9位顺序号” “1位校验码”组成。
+                     */
+                    result = (len >= (1 + 4 + 3 + 9 + 1));
+                    break;
+                default:
+                    /**
+                     * 办理税务登记纳税人：
+                     * 未取得统一社会信用代码的个体工商户以及以居民身份证、回乡证、通行证、护照等有效身份证明办理税务登记的纳税人，其纳税人识别号由“身份证件号码”+“2位顺序码
+                     * ”组成。<br/>
+                     * 一般证件至少8位，回乡证、通行证、护照通常都是字母开始，但是美国护照是全数字。
+                     */
+                    result = (len >= (8 + 2));
+                    break;
+                }
             }
-            mod += (POW_3_ARR[i] % 31 * c);
+            return result;
         }
-        return (mod = mod % 31) == 0 ? (c18 == 0) : (c18 == (31 - mod));
-    }
-
-    private static void initNsrsbhCode() {
-        NSRSBH_CODE_15.put('0', 0);
-        NSRSBH_CODE_15.put('1', 1);
-        NSRSBH_CODE_15.put('2', 2);
-        NSRSBH_CODE_15.put('3', 3);
-        NSRSBH_CODE_15.put('4', 4);
-        NSRSBH_CODE_15.put('5', 5);
-        NSRSBH_CODE_15.put('6', 6);
-        NSRSBH_CODE_15.put('7', 7);
-        NSRSBH_CODE_15.put('8', 8);
-        NSRSBH_CODE_15.put('9', 9);
-        NSRSBH_CODE_15.put('A', 10);
-        NSRSBH_CODE_15.put('B', 11);
-        NSRSBH_CODE_15.put('C', 12);
-        NSRSBH_CODE_15.put('D', 13);
-        NSRSBH_CODE_15.put('E', 14);
-        NSRSBH_CODE_15.put('F', 15);
-        NSRSBH_CODE_15.put('G', 16);
-        NSRSBH_CODE_15.put('H', 17);
-        NSRSBH_CODE_15.put('I', 18);
-        NSRSBH_CODE_15.put('J', 19);
-        NSRSBH_CODE_15.put('K', 20);
-        NSRSBH_CODE_15.put('L', 21);
-        NSRSBH_CODE_15.put('M', 22);
-        NSRSBH_CODE_15.put('N', 23);
-        NSRSBH_CODE_15.put('O', 24);
-        NSRSBH_CODE_15.put('P', 25);
-        NSRSBH_CODE_15.put('Q', 26);
-        NSRSBH_CODE_15.put('R', 27);
-        NSRSBH_CODE_15.put('S', 28);
-        NSRSBH_CODE_15.put('T', 29);
-        NSRSBH_CODE_15.put('U', 30);
-        NSRSBH_CODE_15.put('V', 31);
-        NSRSBH_CODE_15.put('W', 32);
-        NSRSBH_CODE_15.put('X', 33);
-        NSRSBH_CODE_15.put('Y', 34);
-        NSRSBH_CODE_15.put('Z', 35);
-
-        NSRSBH_CODE_18.put('0', 0);
-        NSRSBH_CODE_18.put('1', 1);
-        NSRSBH_CODE_18.put('2', 2);
-        NSRSBH_CODE_18.put('3', 3);
-        NSRSBH_CODE_18.put('4', 4);
-        NSRSBH_CODE_18.put('5', 5);
-        NSRSBH_CODE_18.put('6', 6);
-        NSRSBH_CODE_18.put('7', 7);
-        NSRSBH_CODE_18.put('8', 8);
-        NSRSBH_CODE_18.put('9', 9);
-        NSRSBH_CODE_18.put('A', 10);
-        NSRSBH_CODE_18.put('B', 11);
-        NSRSBH_CODE_18.put('C', 12);
-        NSRSBH_CODE_18.put('D', 13);
-        NSRSBH_CODE_18.put('E', 14);
-        NSRSBH_CODE_18.put('F', 15);
-        NSRSBH_CODE_18.put('G', 16);
-        NSRSBH_CODE_18.put('H', 17);
-        NSRSBH_CODE_18.put('J', 18);
-        NSRSBH_CODE_18.put('K', 19);
-        NSRSBH_CODE_18.put('L', 20);
-        NSRSBH_CODE_18.put('M', 21);
-        NSRSBH_CODE_18.put('N', 22);
-        NSRSBH_CODE_18.put('P', 23);
-        NSRSBH_CODE_18.put('Q', 24);
-        NSRSBH_CODE_18.put('R', 25);
-        NSRSBH_CODE_18.put('T', 26);
-        NSRSBH_CODE_18.put('U', 27);
-        NSRSBH_CODE_18.put('W', 28);
-        NSRSBH_CODE_18.put('X', 29);
-        NSRSBH_CODE_18.put('Y', 30);
+        return false;
     }
 
     private static void initICU() {

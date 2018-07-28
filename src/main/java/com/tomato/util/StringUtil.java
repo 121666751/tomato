@@ -2260,6 +2260,34 @@ public final class StringUtil {
     }
 
     /**
+     * @param source
+     * @param allowUpperCase
+     * @param allowLowerCase
+     *
+     * @return
+     */
+    public static boolean isAsciiAlphanumeric(String source, boolean allowUpperCase, boolean allowLowerCase) {
+        if (null == source || source.isEmpty()) {
+            return false;
+        }
+        char ch;
+        int len = source.length();
+        for (int i = 0; i < len; ++i) {
+            ch = source.charAt(i);
+            if (ch >= '0' && ch <= '9') {
+                continue;
+            } else if (allowUpperCase && ch >= 'A' && ch <= 'Z') {
+                continue;
+            } else if (allowLowerCase && ch >= 'a' && ch <= 'z') {
+                continue;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Masking string.
      *
      * @param source
