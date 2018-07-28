@@ -28,10 +28,6 @@ public final class XIDUtil {
     private static final CheckDigit SHXYDM_CHECKER = new CheckGB32100Mod31_3();
     private static Object PYJC_TRANSLATOR;
 
-    static {
-        initICU();
-    }
-
     private XIDUtil() {
         super();
     }
@@ -333,7 +329,7 @@ public final class XIDUtil {
     }
 
     /**
-     * 获取纳税人名称的拼音简称
+     * 获取纳税人名称的拼音简称<br>
      *
      * @return
      */
@@ -353,6 +349,18 @@ public final class XIDUtil {
             return nsrmc.toUpperCase();
         }
         nsrmc = sb.toString();
+        if (null == PYJC_TRANSLATOR) {
+            synchronized (XIDUtil.class) {
+                if (null == PYJC_TRANSLATOR) {
+                    try {
+                        PYJC_TRANSLATOR = BeanUtil.callMethod("com.ibm.icu.text.Transliterator", "getInstance",
+                                "Han-Latin;NFD;[:Nonspacing Mark:] Remove;[:Punctuation:] Remove; Upper();");
+                    } catch (Exception e) {
+                        throw new RuntimeException("试图加载 ICU4J 汉语拼音转换器失败！", e);
+                    }
+                }
+            }
+        }
         String py = ((com.ibm.icu.text.Transliterator) PYJC_TRANSLATOR).transliterate(nsrmc);
         String[] arr = py.split(" ");
         sb.setLength(0);
@@ -484,16 +492,4 @@ public final class XIDUtil {
         }
         return false;
     }
-
-    private static void initICU() {
-        Class<?> clazz;
-        try {
-            clazz = Class.forName("com.ibm.icu.text.Transliterator");
-        } catch (ClassNotFoundException ignore) {
-            return;
-        }
-        // 拼音简称
-        PYJC_TRANSLATOR = BeanUtil.callMethod(clazz, "getInstance", "Han-Latin;NFD;[:Nonspacing Mark:] Remove;[:Punctuation:] Remove; Upper();");
-    }
-
 }
