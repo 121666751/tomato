@@ -7,19 +7,19 @@ import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.KeySpec;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 import java.util.zip.InflaterInputStream;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 public class AESUtil {
     private static final Charset CHARSET_DEFAULT = Charset.forName("UTF-8");
@@ -34,15 +34,12 @@ public class AESUtil {
     /**
      * Encrypt with zip to base 64 string.
      *
-     * @param text
-     *         the text
-     * @param password
-     *         the password
+     * @param text the text
+     * @param password the password
      *
      * @return string
      *
-     * @throws Exception
-     *         the exception
+     * @throws Exception the exception
      */
     public static String encryptWithZipToBase64(String text, String password) throws Exception {
         if (text == null || text.isEmpty()) {
@@ -54,15 +51,12 @@ public class AESUtil {
     /**
      * Decrypt with unzip from base 64 string.
      *
-     * @param base64String
-     *         the base 64 string
-     * @param password
-     *         the password
+     * @param base64String the base 64 string
+     * @param password the password
      *
      * @return string
      *
-     * @throws Exception
-     *         the exception
+     * @throws Exception the exception
      */
     public static String decryptWithUnzipFromBase64(String base64String, String password) throws Exception {
         if (base64String == null || base64String.isEmpty()) {
@@ -74,15 +68,12 @@ public class AESUtil {
     /**
      * Encrypt to base 64 string.
      *
-     * @param text
-     *         the text
-     * @param password
-     *         the password
+     * @param text the text
+     * @param password the password
      *
      * @return string
      *
-     * @throws Exception
-     *         the exception
+     * @throws Exception the exception
      */
     public static String encryptToBase64(String text, String password) throws Exception {
         if (text == null || text.isEmpty()) {
@@ -94,15 +85,12 @@ public class AESUtil {
     /**
      * Decrypt from base 64 string.
      *
-     * @param base64String
-     *         the base 64 string
-     * @param password
-     *         the password
+     * @param base64String the base 64 string
+     * @param password the password
      *
      * @return string
      *
-     * @throws Exception
-     *         the exception
+     * @throws Exception the exception
      */
     public static String decryptFromBase64(String base64String, String password) throws Exception {
         if (base64String == null || base64String.isEmpty()) {
@@ -114,15 +102,12 @@ public class AESUtil {
     /**
      * Encrypt byte [ ].
      *
-     * @param data
-     *         the data
-     * @param password
-     *         the password
+     * @param data the data
+     * @param password the password
      *
      * @return byte [ ]
      *
-     * @throws Exception
-     *         the exception
+     * @throws Exception the exception
      */
     public static byte[] encrypt(byte[] data, String password) throws Exception {
         return crypt(1, data, password);
@@ -131,23 +116,19 @@ public class AESUtil {
     /**
      * Decrypt byte [ ].
      *
-     * @param data
-     *         the data
-     * @param password
-     *         the password
+     * @param data the data
+     * @param password the password
      *
      * @return byte [ ]
      *
-     * @throws Exception
-     *         the exception
+     * @throws Exception the exception
      */
     public static byte[] decrypt(byte[] data, String password) throws Exception {
         return crypt(2, data, password);
     }
 
     /**
-     * @param opmode
-     *         1 加密，2 解密
+     * @param opmode 1 加密，2 解密
      * @param data
      * @param password
      *
@@ -180,15 +161,12 @@ public class AESUtil {
     /**
      * Gets pbe secret key.
      *
-     * @param password
-     *         the password
-     * @param salt
-     *         the salt
+     * @param password the password
+     * @param salt the salt
      *
      * @return pbe secret key
      *
-     * @throws Exception
-     *         the exception
+     * @throws Exception the exception
      */
     public static SecretKey getPBESecretKey(String password, byte[] salt) throws Exception {
         SecretKeyFactory factory = SecretKeyFactory.getInstance(ALGORITHM_PBKDF2_HMACSHA1);
@@ -289,7 +267,7 @@ public class AESUtil {
      * @return
      */
     private static String base64Encode(byte[] bytes) {
-        return new BASE64Encoder().encode(bytes);
+        return new String(Base64.getEncoder().encode(bytes), CHARSET_DEFAULT);
     }
 
     /**
@@ -300,7 +278,7 @@ public class AESUtil {
      * @throws IOException
      */
     private static byte[] base64Decode(String base64Code) throws IOException {
-        return new BASE64Decoder().decodeBuffer(base64Code);
+        return Base64.getDecoder().decode(base64Code);
     }
 
 }
