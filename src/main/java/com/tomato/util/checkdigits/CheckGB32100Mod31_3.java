@@ -44,7 +44,7 @@ public class CheckGB32100Mod31_3 implements CheckDigit {
     private static final CheckDigit ZZJGDM_CHECKER = new CheckGB11714Mod11_2();
 
     /* (non-Javadoc)
-     * @see com.ifugle.util.checkdigits.CheckDigit#encode(java.lang.String)
+     * @see com.tomato.util.checkdigits.CheckDigit#encode(java.lang.String)
      */
     @Override
     public String encode(String digits) {
@@ -53,7 +53,7 @@ public class CheckGB32100Mod31_3 implements CheckDigit {
     }
 
     /* (non-Javadoc)
-     * @see com.ifugle.util.checkdigits.CheckDigit#verify(java.lang.String)
+     * @see com.tomato.util.checkdigits.CheckDigit#verify(java.lang.String)
      */
     @Override
     public boolean verify(String digits) {
@@ -69,7 +69,7 @@ public class CheckGB32100Mod31_3 implements CheckDigit {
     }
 
     /* (non-Javadoc)
-     * @see com.ifugle.util.checkdigits.CheckDigit#computeCheck(java.lang.String)
+     * @see com.tomato.util.checkdigits.CheckDigit#computeCheck(java.lang.String)
      */
     @Override
     public int computeCheck(String digits) {
@@ -100,7 +100,7 @@ public class CheckGB32100Mod31_3 implements CheckDigit {
     }
 
     /* (non-Javadoc)
-     * @see com.ifugle.util.checkdigits.CheckDigit#getCheckDigit(java.lang.String)
+     * @see com.tomato.util.checkdigits.CheckDigit#getCheckDigit(java.lang.String)
      */
     @Override
     public int getCheckDigit(String digits) {
@@ -113,7 +113,7 @@ public class CheckGB32100Mod31_3 implements CheckDigit {
     }
 
     /* (non-Javadoc)
-     * @see com.ifugle.util.checkdigits.CheckDigit#getData(java.lang.String)
+     * @see com.tomato.util.checkdigits.CheckDigit#getData(java.lang.String)
      */
     @Override
     public String getData(String digits) {
